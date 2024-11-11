@@ -1,0 +1,55 @@
+.pagination-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.pagination-info-box {
+    text-align: center;
+    font-size: .8rem;
+    margin-bottom: .5em;
+}
+
+.pagination-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.pagination-nav__item {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 3px;
+    background-color: #f7f6f6;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    line-height: 42px;
+    border-radius: 5px;
+    transition-duration: .2s;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 6px;
+    cursor: pointer;
+}
+
+.pagination-nav__item:hover {
+    background-color: #989898;
+    color: #fff;
+}
+
+.pagination-nav__item_dot,
+.pagination-nav__item_dot:hover {
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.pagination-nav__item.active {
+    background-color: #989898;
+    color: #fff;
+}

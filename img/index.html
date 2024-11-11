@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="upload.css" type="text/css"/>  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"  type="text/javascript"></script>
+<script type="text/javascript" src="ajaxupload.3.5.js" ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+			var maxPhotos = 15;
+
+			$(".remove_preview").live('click', function(e){
+				$(this).parent().remove();
+				var total = $("#files li").length;
+				if(total>=maxPhotos){
+					$("#upload").fadeOut();
+				}else{
+					$("#upload").fadeIn();
+				}
+			});
+			var btnUpload = $('#upload');
+			var status = $('#status');
+			new AjaxUpload(btnUpload, {
+				action: 'upload-file.php',
+				name: 'uploadfile',
+				onSubmit: function(file, ext){
+					if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){
+						// extension is not allowed
+						status.text('Можно загружать только JPG, PNG или GIF файлы');
+						return false;
+					}
+					status.html('<div><img src="350.gif" style="vertical-align: middle; border: 0px; margin: 0 2px 0 0;"/><span style="vertical-align: middle">Загрузка...Подождите пока файл будет загружен.</span></div>');
+				},
+				onComplete: function(file, response){
+					//On completion clear the status
+					status.text('');
+					//Add uploaded file to list
+					if(response!=="error"){
+						var total = $("#files li").length+1;
+						if(total>=maxPhotos){
+							$("#upload").fadeOut();
+						}else{
+							$("#upload").fadeIn();
+						}
+						$('<li></li>').appendTo('#files').html('<div class="remove_preview"></div><img src="'+response+'" alt="" /><input type="hidden" name="files_preview[]" value="'+response+'" />').addClass('success');
+					} else{
+						$('<li></li>').appendTo('#files').text("Ошибка").addClass('error').fadeOut(5000);
+					}
+				}
+			});
+		});
+</script>
+
+
+                <div id="ajax_photo_add">
+	        	<div id="upload">
+		    	<span>+</span>
+		    	<div class="opis_photo"></div>
+	        	</div>
+	        	<span id="status" ></span>
+	        	<ul id="files" >
+                </ul>
+		        <div class="clearfix"></div>
+	            </div>

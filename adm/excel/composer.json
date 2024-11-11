@@ -1,0 +1,12 @@
+{
+    "name": "johnny/excel",
+    "authors": [
+        {
+            "name": "babaYga1997",
+            "email": "19ivan.lev97@gmail.com"
+        }
+    ],
+    "require": {
+        "PHPOffice/PHPExcel": "^1.8"
+    }
+}

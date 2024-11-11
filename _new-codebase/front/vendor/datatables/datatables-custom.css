@@ -1,0 +1,22 @@
+.dataTables_wrapper .dataTables_filter input {
+    min-width: 500px;
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    height: auto;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    margin-top: 24px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+#parts-table_length{
+    margin-top: 32px;
+}

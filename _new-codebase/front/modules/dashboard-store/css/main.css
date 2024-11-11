@@ -1,0 +1,10 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#table-viewport {
+    height: 90vh;
+    overflow: auto;
+}

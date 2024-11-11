@@ -1,0 +1,32 @@
+.pagination {
+    display: block;
+}
+
+.pagination__num,
+.pagination__num_dot {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    border-radius: 7px;
+    background-color: #80bd03;
+    margin: 5px;
+    font-size: 17px;
+    text-align: center;
+    line-height: 33px;
+    text-decoration: none;
+}
+
+.pagination__num:hover {
+    background-color: crimson;
+}
+
+.pagination__num_active {
+    font-weight: 600;
+    background-color: #527901;
+}
+
+.pagination__num_dot {
+    background-color: transparent;
+    color: #000;
+}

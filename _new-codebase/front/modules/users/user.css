@@ -1,0 +1,8 @@
+.generate-password-btn{
+    font-size: 1rem;
+    margin-top: 0.3em;
+    color: #78af01;
+    border-bottom: dashed 1px #78af01;
+    display: inline-block;
+    cursor: pointer;
+}

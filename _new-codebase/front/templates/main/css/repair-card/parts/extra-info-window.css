@@ -1,0 +1,45 @@
+.extra-info-window {
+    width: 750px;
+}
+
+.extra-info-window.wait {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.extra-info-window__hint {
+    margin-bottom: 16px;
+}
+
+.extra-info-window__photo {
+    display: flex;
+    width: 100%;
+    height: 300px;
+    background-color: #525252;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    padding: 8px;
+}
+
+.extra-info-window__photo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.extra-info-window__photo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.extra-info-window__comment {
+    height: 300px;
+}
+
+.extra-info-window__part-name {
+    font-size: 1.2em;
+    margin-top: 32px;
+}

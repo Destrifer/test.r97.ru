@@ -1,0 +1,33 @@
+
+.check-model-service {
+    background-color: #77ad07;
+    padding: 8px;
+    color: #fff;
+    border-radius: 7px;
+    max-width: 800px;
+}
+
+.check-model-service.no {
+    background-color: #ffdfdf;
+    color: #000;
+}
+
+.check-model-service.yes {
+    background-color: #b6f5b6;
+    color: #000;
+}
+
+.check-model-service__label {
+    display: block;
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.check-model-service__input {
+    height: auto !important;
+    padding: 6px !important;
+    width: 100% !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-size: 17px;
+}

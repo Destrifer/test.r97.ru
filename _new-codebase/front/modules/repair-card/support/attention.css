@@ -1,0 +1,45 @@
+.attention {
+    text-align: left;
+}
+
+.attention__title {
+    margin-bottom: 16px;
+    font-size: 1.1em;
+    color: red;
+}
+
+.attention__item {
+    display: flex;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.attention__add-date {
+    display: block;
+    font-weight: 600;
+    width: 110px;
+    padding: 3px 16px 0 0;
+}
+
+.attention__message {
+    display: block;
+    padding: 3px;
+    flex-grow: 1;
+}
+
+.attention__message[contenteditable="true"]:hover {
+    background-color: #fff;
+}
+
+.attention__save-btn{
+    display: inline-block;
+    cursor: pointer;
+    padding: 6px 10px;
+    background-color: #78af01;
+    color: #fff;
+    font-size: .8em;
+    border-radius: 25px;
+    line-height: normal;
+    margin-left: 130px;
+    margin-top: 9px;
+}

@@ -1,0 +1,36 @@
+.save-parts-table {
+    width: 100%;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.save-parts-table thead {
+    background-color: #eee;
+}
+
+.save-parts-table th,
+.save-parts-table td {
+    padding: 6px;
+    border: solid 1px #eee;
+}
+
+.save-parts-table tbody tr:hover {
+    background-color: #ffffb9;
+}
+
+.save-parts-table__flag-td {
+    text-align: center;
+}
+
+#save-parts-window input[type="checkbox"] {
+    transform: scale(1.5);
+}
+
+.save-parts-qty-td{
+    width: 2em;
+}
+
+.save-parts-controls {
+    display: flex;
+    justify-content: space-between;
+}

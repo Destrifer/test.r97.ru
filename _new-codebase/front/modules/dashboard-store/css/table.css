@@ -1,0 +1,32 @@
+table {
+    border-collapse: collapse;
+}
+
+thead {
+    position: sticky;
+    top: -1px;
+    background-color: #fbfbfb;
+    z-index: 1;
+}
+
+th,
+td {
+    padding: .5em .7em;
+    line-height: 1.4;
+    vertical-align: top;
+    position: relative;
+    border: solid 1px #eee;
+}
+
+th {
+    user-select: none;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background-color: #ffffb3;
+}
+
+tbody tr:hover td {
+    border-color: #e1e1ab;
+}

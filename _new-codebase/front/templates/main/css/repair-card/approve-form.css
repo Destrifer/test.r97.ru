@@ -1,0 +1,49 @@
+.approve-form * {
+    box-sizing: border-box;
+}
+
+.approve-form {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f6f6f6;
+    box-shadow: 0 10px 10px 0 #dcdcdc, inset 0 100px 100px #ffffff78;
+    transition-duration: .2s;
+}
+
+.approve-form:hover {
+    box-shadow: 0 3px 3px 0 #dcdcdc, inset 0 100px 100px #ffffff76;
+}
+
+.approve-form__title {
+    margin-bottom: 1.4em;
+    font-size: 1.2rem;
+}
+
+.approve-form__controls {
+    display: flex;
+    column-gap: 44px;
+}
+
+.approve-form__flags {
+    display: flex;
+    column-gap: 44px;
+}
+
+.approve-form__flag input {
+    transform: scale(1.3);
+    margin: -3px 10px 0 0;
+}
+
+.approve-form__flag {
+    display: flex;
+    align-items: center;
+}
+
+.approve-form__btn {
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.approve-form__comment {
+    padding-top: 1.2rem;
+}

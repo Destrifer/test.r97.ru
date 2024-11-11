@@ -1,0 +1,30 @@
+.table {
+    width: 100%;
+}
+
+.table thead {
+    background-color: #eee;
+}
+
+.table thead th {
+    border: solid 1px #d7d7d7;
+}
+
+.table th,
+.table td {
+    padding: 0.4em;
+    border: solid 1px #eee;
+}
+
+.table_middle th,
+.table_middle td {
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: #ffffb9;
+}
+
+.table__center {
+    text-align: center;
+}

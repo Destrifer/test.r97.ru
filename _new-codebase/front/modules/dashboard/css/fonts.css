@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'fontello';
+    src: url('/_new-codebase/front/modules/dashboard/fonts/fontello.eot?95405160');
+    src: url('/_new-codebase/front/modules/dashboard/fonts/fontello.eot?95405160#iefix') format('embedded-opentype'),
+         url('/_new-codebase/front/modules/dashboard/fonts/fontello.woff2?95405160') format('woff2'),
+         url('/_new-codebase/front/modules/dashboard/fonts/fontello.woff?95405160') format('woff'),
+         url('/_new-codebase/front/modules/dashboard/fonts/fontello.ttf?95405160') format('truetype'),
+         url('/_new-codebase/front/modules/dashboard/fonts/fontello.svg?95405160#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }

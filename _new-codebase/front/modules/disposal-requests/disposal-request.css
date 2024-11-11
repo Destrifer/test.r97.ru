@@ -1,0 +1,21 @@
+.disposal-request__form label{
+    font-weight: 600;
+}
+
+.disposal-request__info-item{
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 32px;
+    margin-bottom: 8px;
+}
+
+.disposal-request__info-item{
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 32px;
+    margin-bottom: 8px;
+}
+
+.disposal-request__comment-input{
+    display: block;
+}

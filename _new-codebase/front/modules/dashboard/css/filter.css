@@ -1,0 +1,50 @@
+.filter__row{
+margin: 0 -7px;
+}
+
+.filter__cell {
+    display: flex;
+    margin-bottom: 14px;
+}
+
+.filter__select-col {
+    flex-grow: 1;
+    width: 50%;
+    padding-left: 7px;
+    position: relative;
+}
+
+.filter__select-col select {
+    background-color: #f2fbde;
+}
+
+.filter__value-col {
+    flex-grow: 1;
+    width: 50%;
+    padding-right: 7px;
+    margin-left: -1px;
+}
+
+.filter__del-btn {
+    display: none;
+    position: absolute;
+    top: -6px;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background-color: crimson;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.filter__del-btn::before {
+    content: '\2716';
+}
+
+.filter__cell:hover .filter__del-btn {
+    display: block;
+}

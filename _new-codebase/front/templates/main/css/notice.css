@@ -1,0 +1,17 @@
+.notice {
+    padding: 1em;
+    line-height: 1.4;
+    background-color: #edf2f9;
+}
+
+.notice__alert {
+    background-color: #fad7dd;
+}
+
+.notice__warn {
+    background-color: #fdf3d9;
+}
+
+.notice__ok {
+    background-color: #ccf7e5;
+}

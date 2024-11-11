@@ -1,0 +1,250 @@
+.parts-list {
+    min-height: 600px;
+}
+
+.parts-list * {
+    box-sizing: border-box;
+}
+
+.parts-list .highlight {
+    background-color: #ffffbb;
+}
+
+.parts-list.wait {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.parts-list__item {
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    margin-bottom: 23px;
+    width: 100%;
+    height: 100%;
+    transition-duration: .2s;
+}
+
+.parts-list__item:hover {
+    box-shadow: 0 0 5px 0 #00000024, 0 0 15px 0 #0000002e;
+}
+
+.parts-list__item_secondary {
+    opacity: .5;
+}
+
+.parts-list__item_secondary:hover {
+    opacity: 1;
+}
+
+.parts-list__col {
+    flex-basis: 25%;
+    flex-grow: 1;
+}
+
+.parts-list__col_main {
+    flex-grow: 4;
+}
+
+.parts-list__col_photos {
+    margin-top: 16px;
+}
+
+.parts-list__col_controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+}
+
+.parts-list__part-name {
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.parts-list__part-descr {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.parts-list__descr {
+    font-size: 17px;
+}
+
+.parts-list__group-name {
+    font-size: 16px;
+    color: #707070;
+    margin-bottom: 4px;
+}
+
+.parts-list__extra-btn {
+    position: absolute;
+    top: 8px;
+    font-size: 1em;
+    text-decoration: none;
+    color: #707070;
+    cursor: pointer;
+}
+
+.parts-list__extra-btn:hover {
+    color: #000;
+}
+
+.parts-list__extra-btn_log {
+    right: 30px;
+}
+
+.parts-list__extra-btn_info {
+    right: 56px;
+}
+
+.parts-list__extra-popup {
+    position: absolute;
+    top: 32px;
+    background-color: #feffd5;
+    padding: 16px;
+    z-index: 1;
+    width: 500px;
+    box-shadow: 0 7px 15px 0 #00000036;
+    border-radius: 7px;
+}
+
+.parts-list__col_photo-item {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    margin: 0 6px 6px 0;
+}
+
+
+/* parts-info */
+
+.parts-info {
+    font-size: 17px;
+}
+
+.parts-info__block {
+    display: inline-block;
+    white-space: nowrap;
+    margin: 16px 0 16px 0;
+}
+
+.parts-info__name,
+.parts-info__val {
+    display: inline-block;
+}
+
+.parts-info__depot-select {
+    max-width: 160px;
+    padding: 3px;
+    border: solid 1px #80bd03;
+}
+
+.parts-info__data {
+    display: inline-block;
+    line-height: 1;
+    padding: .2em .2em .1em .2em;
+    border-radius: 3px;
+    min-width: 1.4em;
+    text-align: center;
+}
+
+.parts-info__extra {
+    display: block;
+    margin-top: 16px;
+    font-size: 17px;
+}
+
+.parts-info__data.gray {
+    background-color: #ababab;
+    color: #fff;
+}
+
+.parts-info__data.green {
+    background-color: #80bd03;
+    color: #fff;
+}
+
+
+/* part-order */
+
+.part-order__qty {
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.part-order__btn {
+    background-color: #80bd03;
+    color: #fff;
+    text-align: center;
+    width: 120px;
+    font-size: 17px;
+    padding: 8px 0;
+}
+
+.part-order__btn.disabled {
+    background-color: #999;
+}
+
+
+/* Depots radio */
+
+.depots-radio {
+    display: flex;
+    border: solid 1px #d9d9d9;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.depots-radio__btn {
+    display: flex;
+    font-size: .9em;
+    padding: 8px 16px 6px 16px;
+    cursor: pointer;
+    flex-grow: 1;
+    background: rgb(246, 246, 246);
+    background: linear-gradient(0deg, rgba(246, 246, 246, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    transition-duration: .2s;
+    line-height: normal;
+    color: #4a4a4a;
+}
+
+.depots-radio__btn.active {
+    background: none;
+    background-color: #80bd03;
+    color: #fff;
+    box-shadow: inset 0 5px 10px #00000021;
+}
+
+.depots-radio__depot {
+    font-weight: 600;
+}
+
+.depots-radio__num {
+    margin-left: 8px;
+}
+
+
+/* Select2 option style */
+
+.s2-name {
+    font-weight: 600;
+}
+
+.s2-name-num {
+    display: flex;
+    justify-content: space-between;
+}
+
+.s2-num {}
+
+.s2-place {
+    font-size: .9em;
+}

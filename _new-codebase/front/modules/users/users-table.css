@@ -1,0 +1,11 @@
+.fs-wrap {
+    width: 100%;
+}
+
+.fs-label-wrap .fs-label {
+    padding: 15px 30px 15px 15px;
+}
+
+.fs-label-wrap {
+    border: 1px solid #77ad07;
+}

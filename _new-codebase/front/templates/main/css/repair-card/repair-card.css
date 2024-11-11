@@ -1,0 +1,135 @@
+.repair-card {
+    padding: 32px;
+    background-color: #ededed;
+}
+
+.repair-card__line {
+    margin: 32px 0;
+}
+
+.repair-card__line_center {
+    text-align: center;
+}
+
+.repair-card__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.repair-card__controls_submit {
+    margin-top: 64px;
+}
+
+.repair-card__btn {
+    padding: 5px 15px;
+}
+
+.repair-card__btn_gray {
+    background-color: #808080 !important;
+}
+
+
+
+.repair-card__summary {
+    display: block;
+    width: 190px;
+    position: fixed;
+    top: 50%;
+    right: -160px;
+    transform: translateY(-50%);
+    padding: 12px 8px 10px;
+    font-size: 17px;
+    color: #fff;
+    background-color: rgba(128, 189, 3, 1);
+    background: linear-gradient(90deg, rgb(120, 177, 5) 0%, rgba(128, 189, 3, 1) 50%, rgb(167, 214, 70) 100%);
+    border-radius: 10px 0 0 10px;
+    transition-duration: .2s;
+    opacity: .8;
+    z-index: 1;
+}
+
+.repair-card__summary::before {
+    display: flex;
+    content: '◄';
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #d3f195;
+    width: 20px;
+    height: 34px;
+    border-radius: 50% 0 0 50%;
+    padding-top: 4px;
+    box-sizing: border-box;
+}
+
+.repair-card__summary:hover::before {
+    content: '►';
+}
+
+@media (min-width: 1560px) {
+    .repair-card__summary {
+        right: 0;
+    }
+
+    .repair-card__summary::before {
+        display: none;
+    }
+}
+
+.repair-card__summary:hover {
+    opacity: 1;
+    right: 0;
+}
+
+
+.repair-card__summary-title {
+    margin: 12px 0 8px 0;
+}
+
+.repair-card__summary-title:first-child {
+    margin-top: 0;
+}
+
+.repair-card__summary-item {
+    margin-bottom: 4px;
+}
+
+.repair-card__summary-item_serial {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-top: dashed 1px #fff;
+    border-bottom: dashed 1px #fff;
+    padding: 3px;
+}
+
+.repair-card__summary-input {
+    height: auto !important;
+    font-size: 16px !important;
+    padding: 1px 0;
+    width: 100% !important;
+    border-radius: 0 !important;
+    background-color: #d3f195;
+    border: none !important;
+    box-shadow: 0 1px 3px 0 #00000026;
+    margin: 0 !important;
+}
+
+.repair-card__summary-checkbox-item {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.repair-card__summary-checkbox-item {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.repair-card__summary-checkbox-item .jq-checkbox {
+    transform: scale(.6);
+}

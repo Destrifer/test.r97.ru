@@ -1,0 +1,60 @@
+.log * {
+    box-sizing: border-box;
+}
+
+.log .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 23px;
+}
+
+.select2-container--default .select2-selection--single {
+    border: 1px solid #77ad07 !important;
+}
+
+.log__table {
+    width: 100%;
+    margin-top: 32px;
+}
+
+.log__table thead {
+    background-color: #fbfbfb;
+}
+
+.log__table th,
+.log__table td {
+    vertical-align: top;
+    padding: 8px 10px;
+    border: solid 1px #eee;
+    position: relative;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.log__empty-row {
+    text-align: center !important;
+    font-style: italic;
+    padding: 32px 0 !important;
+}
+
+.log__td-operation {}
+
+.log__td-part {}
+
+.log__td-depot {}
+
+.log__td-num {
+    width: 10%;
+}
+
+.log__td-user {
+    width: 15%;
+}
+
+.log__td-date {
+    width: 11%;
+}
+
+.log__filter-btn {
+    margin-top: 16px;
+    margin-right: 16px;
+}

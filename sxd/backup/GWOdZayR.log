@@ -1,0 +1,5 @@
+2019.09.13 03:56:43	1	Начало импорта БД `service_harpe_db`
+2019.09.13 03:56:43	1	Файл: service_2019-08-30_21-41-36.sql
+2019.09.13 03:56:43	1	Установлена кодировка соединения: `binary`
+2019.09.13 03:56:43	1	Импорт таблицы `admin_logs`
+2019.09.13 03:56:43	4	Warning: mysqli_error() expects exactly 1 parameter, 0 given (/var/www/service.harper.ru/data/www/service.harper.ru/sxd/index.php:1775)

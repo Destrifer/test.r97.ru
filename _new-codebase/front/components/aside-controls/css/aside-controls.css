@@ -1,0 +1,11 @@
+.aside-controls{
+    position: fixed;
+    left: 2vw;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 146px;
+    justify-content: space-between;
+    margin-top: -73px;
+    cursor: pointer;
+}

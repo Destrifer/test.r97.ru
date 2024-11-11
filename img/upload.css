@@ -1,0 +1,31 @@
+/* стили для AJAX выбора фото*/
+#upload{
+	background: #43A600;;
+	border: 0 solid #CCCCCC;
+	border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	cursor: pointer !important;
+font: 18px/20px "arial";
+text-transform: uppercase;
+text-align: center;
+	margin-left: 0;
+	margin-top: 5px;
+	padding: 5px;
+	text-align: center;
+    height: 20px;
+	width: 50px;
+}
+
+.darkbg{
+	background:#ddd !important;
+}
+#status{
+	font-family:Arial; padding:5px;
+}
+ul#files{ list-style:none; padding:0; margin:0; }
+ul#files li{ padding:10px; margin-bottom:2px;  float:left; margin-right:10px; width: 100px; height: 110px; overflow: hidden}
+ul#files li img{ max-height:102px; max-width:101px; padding: 0px 0 0;}
+ul#files li .remove_preview{ width: 21px; height: 21px; margin: -7px -14px 0 0; float: right; background: url(delete.png) no-repeat; cursor: pointer }
+.success{ width:  125px !important; height: 120% !important; background:whitesmoke; border:1px dashed #CBD2D7; border-radius: 5px 5px 5px 5px;}
+.error{ background:#CC6622; border:1px solid #cc6622; font-size: 12px; width: 198px;}
+/* стили для AJAX выбора фото*/

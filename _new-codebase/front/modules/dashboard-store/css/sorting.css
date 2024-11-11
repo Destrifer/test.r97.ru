@@ -1,0 +1,28 @@
+/* [data-order] {
+    cursor: pointer;
+} */
+
+th.sorting,
+td.sorting {
+    background-color: whitesmoke;
+}
+
+tr:hover td.sorting {
+    background-color: inherit;
+}
+
+th.sorting::before  {
+    color: #77ad07;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1;
+    content: '\25B2';
+}
+
+th.sorting_desc::before  {
+    content: '\25BC';
+}

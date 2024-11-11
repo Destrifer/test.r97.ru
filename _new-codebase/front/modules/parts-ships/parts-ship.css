@@ -1,0 +1,29 @@
+.parts-ship__form label{
+    font-weight: 600;
+}
+
+.parts-ship__table{
+    width: 100%;
+    margin: 0 -6px;
+}
+
+.parts-ship__table th, .parts-ship__table td{
+    padding: 6px;
+    text-align: left;
+}
+
+.parts-ship__add-row-btn{
+    display: inline-block;
+    background-color: #77ad07;
+    padding: 6px 18px;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 24px;
+    white-space: nowrap;
+}
+
+.parts-ship__del-row-btn{
+    cursor: pointer;
+    white-space: nowrap;
+}

@@ -1,0 +1,24 @@
+.param-section {
+    padding: 56px 0 24px 0;
+  }
+
+  .param-title {
+    margin-bottom: 32px;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  .param-row {
+    display: flex;
+  }
+
+  .param-col {
+    padding: 8px;
+  }
+
+  .param-col__name {
+    display: flex;
+    align-items: center;
+  }
+
+/*   .param-col__val {} */

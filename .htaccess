@@ -1,0 +1,959 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+AddDefaultCharset UTF-8
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-repair/(.*)/step/(.*)/readonly/$ index.php?query=edit-repair&id=$1&step=$2&readonly=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-repair/(.*)/step/(.*)/$ index.php?query=edit-repair&id=$1&step=$2
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-repair/(.*)/readonly/$ index.php?query=edit-repair&id=$1&readonly=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^download-returns-report/(.*)/(.*)/(.*)/$ index.php?query=download-returns-report&date1=$1&date2=$2&cats=$3 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^add-brands-tarif/(.*)/$ index.php?query=add-brands-tarif&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^brands-tarif/(.*)/$ index.php?query=brands-tarif&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-repair/(.*)/$ index.php?query=edit-repair&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-issue/(.*)/$ index.php?query=edit-issue&id=$1
+
+ # ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-contrahens/(.*)/$ index.php?query=edit-contrahens&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-city/(.*)/$ index.php?query=edit-city&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-country/(.*)/$ index.php?query=edit-country&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^return/(.*)/$ index.php?query=return&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-client/(.*)/$ index.php?query=edit-client&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-repair/(.*)/$ index.php?query=del-repair&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-issue/(.*)/$ index.php?query=del-issue&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-contrahens/(.*)/$ index.php?query=del-contrahens&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-client/(.*)/$ index.php?query=del-client&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-photo/(.*)/$ index.php?query=del-photo&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-video/(.*)/$ index.php?query=del-video&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-return/(.*)/$ index.php?query=del-return&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-combined/(.*)/$ index.php?query=del-combined&id=$1
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^parts-require/(.*)/$ index.php?query=parts-require&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^comeback-repair/(.*)/$ index.php?query=comeback-repair&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-act/(.*)/$ index.php?query=get-act&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^act-from/(.*)/$ index.php?query=act-from&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^act-to/(.*)/$ index.php?query=act-to&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-all-bills/(.*)/(.*)/$ index.php?query=get-all-bills&id=$1&type=$2
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-all-agent/(.*)/(.*)/$ index.php?query=get-all-agent&id=$1&type=$2
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-reject/(.*)/$ index.php?query=get-reject&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^parts-history/(.*)/$ index.php?query=parts-history&id=$1
+
+# ����� ��� ��� �� �����:
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^get-repairs/(.*)/$ index.php?query=get-repairs&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-tech/(.*)/$ index.php?query=get-tech&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-label/(.*)/$ index.php?query=get-label&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-receipt/(.*)/$ index.php?query=get-receipt&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^services/other/$ index.php?query=services&get=other
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^services/refused/$ index.php?query=services&get=refused
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^dashboard/deleted/$ index.php?query=dashboard&get=deleted [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^stat/$ index.php?query=stat [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^dashboard2/deleted/$ index.php?query=dashboard2&get=deleted [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^dashboard3/deleted/$ index.php?query=dashboard3&get=deleted [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^tickets/page/(.*)/$ index.php?query=tickets&page=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^tickets/$ index.php?query=tickets [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^notify/$ index.php?query=notify [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^add-ticket/$ index.php?query=add-ticket [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-parts-list/$ index.php?query=get-parts-list [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^dashboard/$ index.php?query=dashboard [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^re-repaired/$ index.php?query=re-repaired [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^dashboard3/$ index.php?query=dashboard3 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^dashboard2/$ index.php?query=dashboard2 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel-services/refused/$ index.php?query=excel-services&get=refused [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel-services/other/$ index.php?query=excel-services&get=other [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^payments/$ index.php?query=payments [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^payments-v2/$ index.php?query=payments-v2 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^payments-v3/$ index.php?query=payments-v3 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^payments-v3-archive/$ index.php?query=payments-v3-archive [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^payments-sended/$ index.php?query=payments-sended [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^payments-payed/$ index.php?query=payments-payed [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^stat-master/$ index.php?query=stat-master [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^tickets/([0-9]+)/$ index.php?query=tickets&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-price/(.*)/$ index.php?query=edit-price&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-group/(.*)/$ index.php?query=edit-group&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^copy-group/(.*)/$ index.php?query=copy-group&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-problem/(.*)/$ index.php?query=edit-problem&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-problem-brand/(.*)/(.*)/$ index.php?query=edit-problem&brand_id=$1&id=$2
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-repair-type/(.*)/$ index.php?query=edit-repair-type&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-repair-type-brand/(.*)/$ index.php?query=edit-repair-type-brand&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^repair-types-brand/(.*)/$ index.php?query=repair-types-brand&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^add-repair-type-brand/(.*)/$ index.php?query=add-repair-type-brand&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-parts/(.*)/$ index.php?query=edit-parts&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^copy-parts/(.*)/$ index.php?query=copy-parts&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-price/(.*)/$ index.php?query=del-price&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-problem/(.*)/$ index.php?query=del-problem&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-city/(.*)/$ index.php?query=del-city&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-repair-type/(.*)/$ index.php?query=del-repair-type&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^problems-brand/(.*)/$ index.php?query=problems-brand&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-repair-type-brand/(.*)/$ index.php?query=del-repair-type-brand&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^show-notify-log/(.*)/$ index.php?query=show-notify-log&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-photo-repair/(.*)/(.*)/$ index.php?query=del-photo-repair&repair_id=$1&photo_id=$2
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-serial/(.*)/(.*)/$ index.php?query=del-serial&serial_id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^return-dashboard/(.*)/$ index.php?query=return-dashboard&return_id=$1 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^return-finance/(.*)/$ index.php?query=return-finance&return_id=$1 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^payments-from-combined/(.*)/(.*)/$ index.php?query=payments-from-combined&combined_id=$1&brand=$2 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-model/(.*)/$ index.php?query=edit-model&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-model-service/(.*)/$ index.php?query=edit-model-service&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-categories/(.*)/$ index.php?query=edit-categories&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-model/(.*)/$ index.php?query=del-model&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-service-model/(.*)/$ index.php?query=del-service-model&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^billing-info/(.*)/$ index.php?query=billing-info-admin&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-provider/(.*)/$ index.php?query=edit-provider&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-repairman/(.*)/$ index.php?query=del-repairman&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-tickets/(.*)/$ index.php?query=del-tickets&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-brands/(.*)/$ index.php?query=del-brands&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-service/(.*)/(.*)/$ index.php?query=del-service&id=$1&user_id=$2  [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-personal/(.*)/$ index.php?query=del-personal&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-personal/(.*)/$ index.php?query=edit-personal&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-categories/(.*)/$ index.php?query=del-categories&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^prices-service/(.*)/$ index.php?query=prices-service&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^cats-service/(.*)/$ index.php?query=cats-service&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^models-service/(.*)/$ index.php?query=models-service&id=$1 [QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^documents/(.*)/$ index.php?query=documents&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^block-service/(.*)/$ index.php?query=block-service&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^unblock-service/(.*)/$ index.php?query=unblock-service&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^block-personal/(.*)/$ index.php?query=block-personal&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^unblock-personal/(.*)/$ index.php?query=unblock-personal&id=$1
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^mod-true/(.*)/$ index.php?query=mod_true&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^repair-done/(.*)/$ index.php?query=repair_done&id=$1
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^repair-done2/(.*)/$ index.php?query=repair_done2&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^repair-personal-done/(.*)/$ index.php?query=repair_personal_done&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^mod-false/(.*)/$ index.php?query=mod_false&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-repairman/(.*)/$ index.php?query=edit-repairman&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^re-edit-repair/(.*)/$ index.php?query=re-edit-repair&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^login-like/(.*)/$ index.php?query=login-like&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-brands/(.*)/$ index.php?query=edit-brands&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-group/(.*)/$ index.php?query=del-group&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-parts/(.*)/$ index.php?query=del-parts&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^del-provider/(.*)/$ index.php?query=del-provider&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^mod-request/(.*)/$ index.php?query=mod-request&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^service-info-full/(.*)/$ index.php?query=service-info-full&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^config/(.*)/$ index.php?query=config&id=$1
+
+##roch
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act/(.*)/(.*)/roch/$ index.php?query=get-payment-act&year=$1&month=$2&roch=1 [L]
+
+##tesler
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act/(.*)/(.*)/tesler/$ index.php?query=get-payment-act&year=$1&month=$2&tesler=1 [L]
+
+##tesler
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act/(.*)/(.*)/horizont/$ index.php?query=get-payment-act&year=$1&month=$2&horizont=1 [L]
+
+##sven
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act/(.*)/(.*)/sven/$ index.php?query=get-payment-act&year=$1&month=$2&sven=1 [L]
+
+##tesler
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-optima/(.*)/(.*)/optima-tp/$ index.php?query=get-payment-act-optima&year=$1&month=$2 [L]
+
+##tesler
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-optima/(.*)/(.*)/optima-tp/$ index.php?query=get-payment-bill-optima&year=$1&month=$2 [L]
+
+##tesler
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-optima-pppo/(.*)/(.*)/optima-tp/$ index.php?query=get-payment-act-optima-pppo&year=$1&month=$2 [L]
+
+##tesler
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-optima-pppo/(.*)/(.*)/optima-tp/$ index.php?query=get-payment-bill-optima-pppo&year=$1&month=$2 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill/(.*)/(.*)/tesler/$ index.php?query=get-payment-bill&year=$1&month=$2&tesler=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill/(.*)/(.*)/roch/$ index.php?query=get-payment-bill&year=$1&month=$2&roch=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill/(.*)/(.*)/horizont/$ index.php?query=get-payment-bill&year=$1&month=$2&horizont=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill/(.*)/(.*)/sven/$ index.php?query=get-payment-bill&year=$1&month=$2&sven=1 [L]
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill/(.*)/(.*)/SELENGA-brand/$ index.php?query=get-payment-bill&year=$1&month=$2&brand=SELENGA [L]
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive/(.*)/(.*)/tesler/$ index.php?query=get-payment-archive&year=$1&month=$2&tesler=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive/(.*)/(.*)/selenga/$ index.php?query=get-payment-archive&year=$1&month=$2&selenga=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive/(.*)/(.*)/horizont/$ index.php?query=get-payment-archive&year=$1&month=$2&horizont=1 [L]
+##/tesler
+
+##tesler
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-admin-v2/(.*)/(.*)/$ index.php?combine_id=$1&query=get-payment-act-admin-v2&brand=$2 [L]
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-admin-v2/(.*)/(.*)/$ index.php?combine_id=$1&query=get-payment-bill-admin-v2&brand=$2 [L]
+
+##tesler
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-admin/(.*)/(.*)/(.*)/tesler/$ index.php?service_id=$1&query=get-payment-act-admin&year=$2&month=$3&tesler=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-admin/(.*)/(.*)/(.*)/selenga-brand/$ index.php?service_id=$1&query=get-payment-act-admin&year=$2&month=$3&selenga=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-admin/(.*)/(.*)/(.*)/horizont/$ index.php?service_id=$1&query=get-payment-act-admin&year=$2&month=$3&horizont=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-admin/(.*)/(.*)/(.*)/roch/$ index.php?service_id=$1&query=get-payment-act-admin&year=$2&month=$3&roch=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-admin/(.*)/(.*)/(.*)/roch/$ index.php?service_id=$1&query=get-payment-bill-admin&year=$2&month=$3&roch=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-admin/(.*)/(.*)/(.*)/tesler/$ index.php?service_id=$1&query=get-payment-bill-admin&year=$2&month=$3&tesler=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-admin/(.*)/(.*)/(.*)/selenga-brand/$ index.php?service_id=$1&query=get-payment-bill-admin&year=$2&month=$3&selenga=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-admin/(.*)/(.*)/(.*)/horizont/$ index.php?service_id=$1&query=get-payment-bill-admin&year=$2&month=$3&horizont=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive-admin/(.*)/(.*)/(.*)/tesler/$ index.php?service_id=$1&query=get-payment-archive-admin&year=$2&month=$3&tesler=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive-admin/(.*)/(.*)/(.*)/selenga/$ index.php?service_id=$1&query=get-payment-archive-admin&year=$2&month=$3&selengar=1 [L]
+
+
+##/tesler
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^send-to-pay/(.*)/(.*)/(.*)/(.*)/$ index.php?service_id=$1&query=send-to-pay&year=$2&month=$3&brand=$4 [L]
+
+
+##/tesler
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^send-to-repay/(.*)/(.*)/(.*)/(.*)/$ index.php?service_id=$1&query=send-to-repay&year=$2&month=$3&brand=$4 [L]
+
+##/tesler
+
+##
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive-admin/(.*)/(.*)/(.*)/horizont/$ index.php?service_id=$1&query=get-payment-archive-admin&year=$2&month=$3&horizont=1 [L]
+##/tesler
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^send-to-pay/(.*)/(.*)/(.*)/horizont/$ index.php?service_id=$1&query=send-to-pay&year=$2&month=$3&horizont=1 [L]
+##/tesler
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^send-to-repay/(.*)/(.*)/(.*)/horizont/$ index.php?service_id=$1&query=send-to-repay&year=$2&month=$3&horizont=1 [L]
+##/tesler
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act/(.*)/(.*)/(.*)-brand/$ index.php?query=get-payment-act&year=$1&month=$2&brand=$3 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act/(.*)/(.*)/$ index.php?query=get-payment-act&year=$1&month=$2 [L]
+
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill/(.*)/(.*)/$ index.php?query=get-payment-bill&year=$1&month=$2 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive/(.*)/(.*)/$ index.php?query=get-payment-archive&year=$1&month=$2 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^show-double/(.*)/(.*)/$ index.php?query=show-double&serial=$1&id=$2 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-agent/(.*)/(.*)/(.*)/(.*)/$ index.php?query=get-agent&year=$1&month=$2&agent_id=$3&brands=$4 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-act-admin/(.*)/(.*)/(.*)/$ index.php?service_id=$1&query=get-payment-act-admin&year=$2&month=$3 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-bill-admin/(.*)/(.*)/(.*)/$ index.php?service_id=$1&query=get-payment-bill-admin&year=$2&month=$3 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive-admin/(.*)/(.*)/(.*)/$ index.php?service_id=$1&query=get-payment-archive-admin&year=$2&month=$3 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^send-to-pay/(.*)/(.*)/(.*)/$ index.php?service_id=$1&query=send-to-pay&year=$2&month=$3 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^send-to-repay/(.*)/(.*)/(.*)/$ index.php?service_id=$1&query=send-to-repay&year=$2&month=$3 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^get-payment-archive-full/$ index.php?query=get-payment-archive-full [L]
+
+
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^service/(.*)/edit/$ index.php?query=edit&service_id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^edit-personal/(.*)/$ index.php?query=edit-personal&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^document/(.*)/add/$ index.php?query=add_document&id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^document/(.*)/edit/(.*)/$ index.php?query=edit_document&id=$1&sc=$2 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^my-service/(.*)/edit/$ index.php?query=my_edit&service_id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^service/(.*)/delete/$ index.php?query=delete&service_id=$1
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^support/(.*)/close/$ index.php?query=support&ticket_id=$1&close=1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^support/(.*)/reopen/$ index.php?query=support&ticket_id=$1&reopen=1 [L]
+
+
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^support/(.*)/$ index.php?query=support&ticket_id=$1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel1/(.*)/$ adm/excel1_db.php?id=$1 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel2/(.*)/$ adm/excel/script_db.php?id=$1 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel3/(.*)/$ adm/excel/script_db2.php?id=$1 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel4/(.*)/$ adm/excel/script_db3.php?id=$1 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel2-xls/(.*)/$ adm/excel/script_db_xls.php?id=$1 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel3-xls/(.*)/$ adm/excel/script_db2_xls.php?id=$1 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel4-xls/(.*)/$ adm/excel/script_db3_xls.php?id=$1 [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^act-a3/(.*)/$ index.php?query=act-a3&return_id=$1 [L]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^excel2/(.*)/files.zip$ adm/excel/files.zip [L,QSA]
+
+# ����� ��� ��� �� �����:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/(.*)/$ index.php?game=1&query=$2&cat_sef=$1
+
+# ���������� ��� ������� � ����������:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ index.php?query=$1
+
+
+ AddDefaultCharset UTF-8
+
+#php_flag display_startup_errors on
+#php_flag display_errors on
+#php_flag html_errors on
