@@ -75,7 +75,7 @@ $secNav = [
 <html>
 <head>
 <meta charset=utf-8>
-<title>Тарифы обслуживания 2018 - Панель управления</title>
+<title>Тарифы обслуживания 2024 - Панель управления</title>
 <link href="/css/fonts.css" rel="stylesheet" />
 <link href="/css/style.css" rel="stylesheet" />
 <script src="/_new-codebase/front/vendor/jquery/jquery-1.7.2.min.js"  ></script>
