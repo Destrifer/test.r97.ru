@@ -238,7 +238,7 @@ $(document).ready(function() {
 
   </div><!-- .adm-tab -->
            <br>
-           <h2>Тарифы обслуживания 2018</h2>  
+           <h2>Тарифы обслуживания 2024</h2>  
            
            <div class="adm-catalog">
            <div class="add layout__mb_md">
