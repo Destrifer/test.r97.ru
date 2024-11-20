@@ -495,6 +495,16 @@ if ($_GET['query'] == 'transfer-2') {
   }
 }
 
+# Третий тариф (временно):
+if ($_GET['query'] == 'transfer-3') {
+  
+  
+  if (User::hasRole('admin')) {
+    require $_SERVER['DOCUMENT_ROOT'].'/templates/transfer-3.php';
+    exit;
+  }
+}
+
 # Дашборд:
 if ($_GET['query'] == 'providers') {
   
