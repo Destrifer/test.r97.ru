@@ -1954,6 +1954,20 @@ echo json_encode(['message' => '', 'error_flag' => 0]);
 exit;
 }
 
+if ($_GET['type'] == 'update_travel_total3') {
+  if (empty($_SESSION['pass_protect'])) {
+    exit;
+  }
+$rawData = json_decode($_POST['data'], true);
+foreach ($rawData as $data) {
+  mysqli_query($db, 'UPDATE `transfer_3` SET 
+  `'.$data['field'].'` = \''.mysqli_real_escape_string($db, $data['value']).'\'
+  WHERE `id` = '.$data['id']) or mysqli_error($db);
+  admin_log_add('Обновлена цена доставки (2024) #'.$data['id']);
+}
+echo json_encode(['message' => '', 'error_flag' => 0]);
+exit;
+}
 
 if ($_GET['type'] == 'get_models' && $_GET['id']) {
 

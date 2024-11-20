@@ -139,7 +139,7 @@ $(document).ready(function() {
         blockFlag = true;
         $.ajax({
             type: 'POST',
-            url: '/ajax.php?type=update_travel_total2',
+            url: '/ajax.php?type=update_travel_total3',
             data: 'data=' + JSON.stringify(data),
             success: function(resp) {
                 if (+resp['error_flag']) {
@@ -244,6 +244,7 @@ $(document).ready(function() {
   <div class="adm-catalog">
 
      <div class="add layout__mb_md">
+		 <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/transfer-2/" class="button">Тариф транспорт 2018</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/transfer/" class="button">Тариф транспорт 2022</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/mass-transport-tariff-change/" class="button">Массово поменять тариф</a>
     </div>
