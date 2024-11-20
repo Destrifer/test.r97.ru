@@ -500,7 +500,7 @@ if ($_GET['query'] == 'transfer-3') {
   
   
   if (User::hasRole('admin')) {
-    require $_SERVER['DOCUMENT_ROOT'].'/templates/transfer-3.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/templates/transfer-2.php';
     exit;
   }
 }
