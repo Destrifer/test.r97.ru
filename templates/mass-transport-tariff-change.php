@@ -133,7 +133,7 @@ if (isset(core\App::$URLParams['action'])) {
                         echo ' / ';
                         echo ($t == 2) ? '<b>тариф 2022</b>' : '<a href="/mass-transport-tariff-change/?tariff=2">тариф 2022</a>';
 												echo ' / ';
-                        echo ($t == 3) ? '<b>тариф 2024</b>' : '<a href="/mass-transport-tariff-change/?tariff=2">тариф 2024</a>';
+                        echo ($t == 3) ? '<b>тариф 2024</b>' : '<a href="/mass-transport-tariff-change/?tariff=3">тариф 2024</a>';
                         ?>
                     </h3>
                     <h3 style="font-size: 21px;font-weight: 300;margin-bottom: 16px;">
