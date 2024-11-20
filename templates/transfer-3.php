@@ -7,9 +7,9 @@ if (\models\User::hasRole('admin')) {
 
 $sql = mysqli_query($db, 'SELECT * FROM `cats` where `travel` = 1;');
       while ($row = mysqli_fetch_array($sql)) {
-        $count_prices = mysqli_fetch_array(mysqli_query($db, 'SELECT COUNT(*) FROM `transfer_2` where `cat_id` = '.$row['id']));
+        $count_prices = mysqli_fetch_array(mysqli_query($db, 'SELECT COUNT(*) FROM `transfer_3` where `cat_id` = '.$row['id']));
         if ($count_prices['COUNT(*)'] == 0) {
-            mysqli_query($db, 'INSERT INTO `transfer_2` (
+            mysqli_query($db, 'INSERT INTO `transfer_3` (
             `cat_id`
             ) VALUES (
             \''.mysqli_real_escape_string($db, $row['id']).'\'
@@ -18,11 +18,11 @@ $sql = mysqli_query($db, 'SELECT * FROM `cats` where `travel` = 1;');
 
       }
 
-$sql = mysqli_query($db, 'SELECT * FROM `transfer_2`;');
+$sql = mysqli_query($db, 'SELECT * FROM `transfer_3`;');
       while ($row = mysqli_fetch_array($sql)) {
         $count_service = mysqli_fetch_array(mysqli_query($db, 'SELECT COUNT(*) FROM `cats` where `travel` = 1 and `id` = '.$row['cat_id']));
         if ($count_service['COUNT(*)'] == 0) {
-            mysqli_query($db, 'DELETE FROM `transfer_2` WHERE `id` = '.$row['id'].' LIMIT 1;') or mysqli_error($db);
+            mysqli_query($db, 'DELETE FROM `transfer_3` WHERE `id` = '.$row['id'].' LIMIT 1;') or mysqli_error($db);
         }
 
       }
@@ -38,7 +38,7 @@ function content_list() {
   global $db;
 
 if (\models\User::hasRole('admin')) {
-$sql = mysqli_query($db, 'SELECT * FROM `transfer_2` ;');
+$sql = mysqli_query($db, 'SELECT * FROM `transfer_3` ;');
 if (mysqli_num_rows($sql) != false) {
       while ($row = mysqli_fetch_array($sql)) {
       $content_list .= '<tr>
@@ -76,7 +76,7 @@ $secNav = [
 <html>
 <head>
 <meta charset=utf-8>
-<title>Тарифы транспорт 2018 - Панель управления</title>
+<title>Тарифы транспорт 2024 - Панель управления</title>
 <link href="/css/fonts.css" rel="stylesheet" />
 <link href="/css/style.css" rel="stylesheet" />
 <script src="/_new-codebase/front/vendor/jquery/jquery-1.7.2.min.js"  ></script>
@@ -239,7 +239,7 @@ $(document).ready(function() {
 
   </div><!-- .adm-tab -->
            <br>
-           <h2>Тарифы транспорт 2018</h2>
+           <h2>Тарифы транспорт 2024</h2>
 
   <div class="adm-catalog">
 
