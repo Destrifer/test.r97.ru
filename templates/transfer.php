@@ -247,6 +247,7 @@ $(document).ready(function() {
 
      <div class="add layout__mb_md">
      <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/transfer-2/" class="button">Тариф транспорт 2018</a>
+		 <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/transfer-3/" class="button">Тариф транспорт 2024</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/add-price/" class="button">Добавить категорию с расценками</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/tariff-transport-sync/" class="button">Синхронизировать тарифы</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/mass-transport-tariff-change/" class="button">Массово поменять тариф</a>

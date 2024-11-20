@@ -245,6 +245,7 @@ $(document).ready(function() {
 
      <div class="add layout__mb_md">
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/transfer/" class="button">Тариф транспорт 2022</a>
+			<a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/transfer/" class="button">Тариф транспорт 2024</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/mass-transport-tariff-change/" class="button">Массово поменять тариф</a>
     </div>
     <nav class="layout__mb_md">

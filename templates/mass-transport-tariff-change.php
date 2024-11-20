@@ -132,6 +132,8 @@ if (isset(core\App::$URLParams['action'])) {
                         echo ($t == 1) ? '<b>тариф 2018</b>' : '<a href="/mass-transport-tariff-change/?tariff=1">тариф 2018</a>';
                         echo ' / ';
                         echo ($t == 2) ? '<b>тариф 2022</b>' : '<a href="/mass-transport-tariff-change/?tariff=2">тариф 2022</a>';
+												echo ' / ';
+                        echo ($t == 3) ? '<b>тариф 2024</b>' : '<a href="/mass-transport-tariff-change/?tariff=2">тариф 2024</a>';
                         ?>
                     </h3>
                     <h3 style="font-size: 21px;font-weight: 300;margin-bottom: 16px;">
@@ -139,6 +141,7 @@ if (isset(core\App::$URLParams['action'])) {
                         <select class="nomenu" name="tariff_id" style="margin-bottom: 24px;">
                             <option value="1">Тариф 2018</option>
                             <option value="2">Тариф 2022</option>
+														<option value="3">Тариф 2024</option>
                         </select>
                     </h3>
                     <div style="margin-top: 32px;font-weight: 600"><label><input type="checkbox" data-check-all-flags> Выделить все</label></div>
@@ -173,7 +176,7 @@ if (isset(core\App::$URLParams['action'])) {
 function getServicesHTML()
 {
     global $db;
-    $tariffs = [2 => 'Тариф 2022', 1 => 'Тариф 2018'];
+    $tariffs = [3 => 'Тариф 2024', 2 => 'Тариф 2022', 1 => 'Тариф 2018'];
     $html = '<div class="service-col">';
     $tariffWhere = (empty(App::$URLParams['tariff'])) ? '' : ' AND r.`transport_tariff_id` = ' . App::$URLParams['tariff'];
     $sql = mysqli_query($db, 'SELECT r.`user_id`, r.`name`, r.`transport_tariff_id` FROM `requests` r LEFT JOIN `'.Users::TABLE.'` u ON u.`id` = r.`user_id` WHERE r.`mod` = 1 ' . $tariffWhere . ' AND u.`role_id` IN (3,4) AND u.`status_id` = 1 ORDER BY r.`name`;');
