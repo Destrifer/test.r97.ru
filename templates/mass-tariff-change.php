@@ -8,9 +8,9 @@ if (isset(core\App::$URLParams['action'])) {
 
     switch (core\App::$URLParams['action']) {
         case 'save-service-form':
-						if (!empty($_POST['service_id'])) {
-							models\Tariffs::sychTariff($_POST['service_id']);
-						}
+            if (!empty($_POST['service_id']) && !empty($_POST['tariff_id'])) {
+                models\Tariffs::massChangeTariff($_POST['service_id'], $_POST['tariff_id']);
+            }
             header('Location: /prices/');
             exit;
             break;
