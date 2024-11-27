@@ -49,28 +49,7 @@ check_cats();
 
 function content_list()
 {
-    global $db;
 
-    if (\models\User::hasRole('admin')) {
-        $sql = mysqli_query($db, 'SELECT * FROM `prices` ;');
-        if (mysqli_num_rows($sql) != false) {
-            while ($row = mysqli_fetch_array($sql)) {
-                $content_list .= '<tr>
-      <td>' . $row['id'] . '</td>
-      <td>' . cat($row['cat_id'])['name'] . '</td>
-      <td><input class="editable" style="width:90px;" type="text" name="element" value="' . $row['element'] . '" data-id="' . $row['id'] . '" data-service-id="' . $_GET['id'] . '"></td>
-      <td><input class="editable" style="width:90px;" type="text" name="block" value="' . $row['block'] . '" data-id="' . $row['id'] . '" data-service-id="' . $_GET['id'] . '"></td> 
-          <td><input class="editable" style="width:90px;" type="text" name="acess" value="' . $row['acess'] . '" data-id="' . $row['id'] . '" data-service-id="' . $_GET['id'] . '"></td>
-          <td><input class="editable" style="width:90px;" type="text" name="anrp" value="' . $row['anrp'] . '" data-id="' . $row['id'] . '" data-service-id="' . $_GET['id'] . '"></td>
-          <td><input class="editable" style="width:90px;" type="text" name="ato" value="' . $row['ato'] . '" data-id="' . $row['id'] . '" data-service-id="' . $_GET['id'] . '"></td>
-          <td><input class="editable" style="width:90px;" type="text" name="simple" value="' . $row['simple'] . '" data-id="' . $row['id'] . '" data-service-id="' . $_GET['id'] . '"></td>
-      </tr>';
-            }
-        } else {
-            $content_list = '<tr><td colspan="9">' . $row['id'] . '</td>';
-        }
-        return $content_list;
-    }
 }
 
 function cat($id)
