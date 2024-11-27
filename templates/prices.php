@@ -243,7 +243,7 @@ $(document).ready(function() {
   <div class="adm-catalog">
 
      <div class="add layout__mb_md">
-      <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/prices-2/" class="button">Тариф 2024</a>
+      <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/prices-2/" class="button">Тариф 2018</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/prices-2023/" class="button">Тариф 2023</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/add-price/" class="button">Добавить категорию с расценками</a>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/tariff-sync/" class="button">Синхронизировать тарифы</a>
