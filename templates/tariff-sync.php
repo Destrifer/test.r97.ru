@@ -15,36 +15,6 @@ if (isset(core\App::$URLParams['action'])) {
     }
 }
 
-function check_cats()
-{
-    global $db;
-
-    if (\models\User::hasRole('admin')) {
-
-        $sql = mysqli_query($db, 'SELECT * FROM `cats` where `service` = 1;');
-        while ($row = mysqli_fetch_array($sql)) {
-            $count_prices = mysqli_fetch_array(mysqli_query($db, 'SELECT COUNT(*) FROM `prices` where `cat_id` = ' . $row['id']));
-            if ($count_prices['COUNT(*)'] == 0) {
-                mysqli_query($db, 'INSERT INTO `prices` (
-            `cat_id`
-            ) VALUES (
-            \'' . mysqli_real_escape_string($db, $row['id']) . '\'
-            );') or mysqli_error($db);
-            }
-        }
-
-        $sql = mysqli_query($db, 'SELECT * FROM `prices`;');
-        while ($row = mysqli_fetch_array($sql)) {
-            $count_service = mysqli_fetch_array(mysqli_query($db, 'SELECT COUNT(*) FROM `cats` where `service` = 1 and `id` = ' . $row['cat_id']));
-            if ($count_service['COUNT(*)'] == 0) {
-                mysqli_query($db, 'DELETE FROM `prices` WHERE `id` = ' . $row['id'] . ' LIMIT 1;') or mysqli_error($db);
-            }
-        }
-    }
-}
-
-check_cats();
-
 
 
 function content_list()
@@ -52,7 +22,7 @@ function content_list()
     global $db;
 
     if (\models\User::hasRole('admin')) {
-        $sql = mysqli_query($db, 'SELECT * FROM `prices_2` ;');
+        $sql = mysqli_query($db, 'SELECT * FROM `prices` ;');
         if (mysqli_num_rows($sql) != false) {
             while ($row = mysqli_fetch_array($sql)) {
                 $content_list .= '<tr>
