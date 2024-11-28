@@ -51,41 +51,23 @@ class Tariffs extends _Model
     }
 
 
-    public static function sychTariff(array $servicesIDs, int $tariffID)
-{
-    // Определяем имя таблицы в зависимости от tariff_id
-    $tableName = match ($tariffID) {
-        1 => 'prices',
-        2 => 'prices-2',
-        3 => 'prices-2023',
-        default => throw new InvalidArgumentException("Неизвестный тариф: $tariffID"),
-    };
-
-    // Получаем данные из соответствующей таблицы
-    $rows = self::$db->exec("SELECT * FROM `$tableName`");
-
-    foreach ($servicesIDs as $serviceID) {
-        if ($serviceID == 33) { // ИП Кулиджанов
-            self::sychTariffSpecial($rows);
-            continue;
-        }
-
-        // Удаляем старые записи
-        self::$db->exec('DELETE FROM `prices_service` WHERE `service_id` = ?', [$serviceID]);
-
-        $query = [];
-        foreach ($rows as $row) {
-            $query[] = '(' . $serviceID . ', ' . $row['cat_id'] . ', ' . $row['block'] . ', ' . $row['element'] . ', ' . $row['access'] . ', ' . $row['anrp'] . ', ' . $row['ato'] . ')';
-        }
-
-        // Вставляем новые записи
-        if (!empty($query)) {
+    public static function sychTariff(array $servicesIDs)
+    {
+        $rows = self::$db->exec('SELECT * FROM `prices`');
+        foreach ($servicesIDs as $serviceID) {
+            if ($serviceID == 33) { // ИП Кулиджанов
+                self::sychTariffSpecial($rows);
+                continue;
+            }
+            self::$db->exec('DELETE FROM `prices_service` WHERE `service_id` = ?', [$serviceID]);
+            $query = [];
+            foreach ($rows as $row) {
+                $query[] = '(' . $serviceID . ', ' . $row['cat_id'] . ', ' . $row['block'] . ', ' . $row['element'] . ', ' . $row['acess'] . ', ' . $row['anrp'] . ', ' . $row['ato'] . ')';
+            }
             self::$db->exec('INSERT INTO `prices_service` (`service_id`, `cat_id`, `block`, `component`, `access`, `anrp`, `ato`) 
                 VALUES ' . implode(',', $query));
         }
     }
-}
-
 
 
     private static function sychTariffSpecial(array $tariffs)
