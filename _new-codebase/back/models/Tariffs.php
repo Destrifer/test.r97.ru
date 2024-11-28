@@ -51,50 +51,39 @@ class Tariffs extends _Model
     }
 
 
-    public static function sychTariff(array $servicesIDs)
+    public static function sychTariff(array $servicesIDs, int $tariffID)
 {
-    // Получаем все записи из таблицы prices
-    $rows = self::$db->exec('SELECT * FROM `prices`');
-    $tariffs = []; // Массив для хранения информации о тарифах
-    
-    // Проходим по всем переданным ID сервисов
+    // Определяем имя таблицы в зависимости от tariff_id
+    $tableName = match ($tariffID) {
+        1 => 'prices',
+        2 => 'prices-2',
+        3 => 'prices-2023',
+        default => throw new InvalidArgumentException("Неизвестный тариф: $tariffID"),
+    };
+
+    // Получаем данные из соответствующей таблицы
+    $rows = self::$db->exec("SELECT * FROM `$tableName`");
+
     foreach ($servicesIDs as $serviceID) {
-        
-        // Получаем тариф для конкретного service_id
-        $tariff = self::$db->exec('SELECT tariff_id FROM `prices_service` WHERE `service_id` = ?', [$serviceID]);
-        
-        // Проверяем, найден ли тариф для этого service_id
-        if ($tariff) {
-            $tariffs[$serviceID] = $tariff[0]['tariff_id']; // Сохраняем tariff_id
-        } else {
-            $tariffs[$serviceID] = null; // Если тариф не найден
-        }
-        
-        // Если сервис имеет ID 33 (ИП Кулиджанов), выполняем специальную синхронизацию
         if ($serviceID == 33) { // ИП Кулиджанов
             self::sychTariffSpecial($rows);
             continue;
         }
 
-        // Удаляем все старые записи для этого service_id в таблице prices_service
+        // Удаляем старые записи
         self::$db->exec('DELETE FROM `prices_service` WHERE `service_id` = ?', [$serviceID]);
 
-        // Массив для запросов вставки
         $query = [];
-        
-        // Создаем запросы для вставки новых данных
         foreach ($rows as $row) {
-            // Вставляем данные для каждого сервиса
-            $query[] = '(' . $serviceID . ', ' . $row['cat_id'] . ', ' . $row['block'] . ', ' . $row['element'] . ', ' . $row['acess'] . ', ' . $row['anrp'] . ', ' . $row['ato'] . ')';
+            $query[] = '(' . $serviceID . ', ' . $row['cat_id'] . ', ' . $row['block'] . ', ' . $row['element'] . ', ' . $row['access'] . ', ' . $row['anrp'] . ', ' . $row['ato'] . ')';
         }
 
-        // Выполняем вставку новых данных в таблицу prices_service
-        self::$db->exec('INSERT INTO `prices_service` (`service_id`, `cat_id`, `block`, `component`, `access`, `anrp`, `ato`) 
-            VALUES ' . implode(',', $query));
+        // Вставляем новые записи
+        if (!empty($query)) {
+            self::$db->exec('INSERT INTO `prices_service` (`service_id`, `cat_id`, `block`, `component`, `access`, `anrp`, `ato`) 
+                VALUES ' . implode(',', $query));
+        }
     }
-
-    // Возвращаем информацию о тарифах
-    return $tariffs;
 }
 
 
