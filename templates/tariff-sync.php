@@ -4,15 +4,19 @@ use program\core;
 
 if (isset(core\App::$URLParams['action'])) {
 
-    switch (core\App::$URLParams['action']) {
-        case 'save-service-form':
-            if (!empty($_POST['service_id'])) {
-                models\Tariffs::sychTariff($_POST['service_id'], $_POST['tariff_id']);
-            }
-            header('Location: /prices/');
-            exit;
-            break;
-    }
+	switch (core\App::$URLParams['action']) {
+			case 'save-service-form':
+					if (!empty($_POST['service_id']) && !empty($_POST['tariff_id'])) {
+							// Перебираем все переданные tariff_id
+							foreach ($_POST['service_id'] as $service_id) {
+									$tariff_id = isset($_POST['tariff_id'][$service_id]) ? $_POST['tariff_id'][$service_id] : null;
+									models\Tariffs::sychTariff($service_id, $tariff_id);
+							}
+					}
+					header('Location: /prices/');
+					exit;
+					break;
+	}
 }
 
 function check_cats()
@@ -233,19 +237,15 @@ function getServicesHTML()
             $n = 0;
         }
 
-        // Добавляем скрытое поле для передачи tariff_id
+        // Выводим имя сервиса и тариф
         $html .= '<label class="service-row">
                     <input data-check-flag="" type="checkbox" name="service_id[]" value="' . $row['user_id'] . '"> 
                     ' . $row['name'] . '
-                    <br><small>Тариф: ' . ($row['tariff_id'] ? $row['tariff_id'] : 'Не указан') . '</small>';
-
-        // Скрытое поле для тарифов
-        $html .= '<input type="hidden" name="tariff_ids[' . $row['user_id'] . ']" value="' . $row['tariff_id'] . '">
+                    <br><small>Тариф: ' . ($row['tariff_id'] ? $row['tariff_id'] : 'Не указан') . '</small>
+                    <input type="hidden" name="tariff_id[' . $row['user_id'] . ']" value="' . $row['tariff_id'] . '" />
                   </label>';
-
         $n++;
     }
     $html .= '</div>';
     return '<div class="service">' . $html . '</div>';
 }
-
