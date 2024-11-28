@@ -4,19 +4,15 @@ use program\core;
 
 if (isset(core\App::$URLParams['action'])) {
 
-	switch (core\App::$URLParams['action']) {
-			case 'save-service-form':
-					if (!empty($_POST['service_id']) && !empty($_POST['tariff_id'])) {
-							// Перебираем все переданные tariff_id
-							foreach ($_POST['service_id'] as $service_id) {
-									$tariff_id = isset($_POST['tariff_id'][$service_id]) ? $_POST['tariff_id'][$service_id] : null;
-									models\Tariffs::sychTariff($service_id, $tariff_id);
-							}
-					}
-					header('Location: /prices/');
-					exit;
-					break;
-	}
+    switch (core\App::$URLParams['action']) {
+        case 'save-service-form':
+            if (!empty($_POST['service_id'])) {
+                models\Tariffs::sychTariff($_POST['service_id']);
+            }
+            header('Location: /prices/');
+            exit;
+            break;
+    }
 }
 
 function check_cats()
@@ -220,30 +216,14 @@ function getServicesHTML()
 {
     global $db;
     $html = '<div class="service-col">';
-
-    // Запрос для получения сервисов с тарифами
-    $sql = mysqli_query($db, '
-        SELECT r.`user_id`, r.`name`, r.`tariff_id` 
-        FROM `requests` r 
-        LEFT JOIN `users` u ON u.`id` = r.`user_id` 
-        WHERE r.`mod` = 1 AND u.`role_id` = 3 AND u.`status_id` = 1 
-        ORDER BY r.`name`;
-    ');
-
+    $sql = mysqli_query($db, 'SELECT r.`user_id`, r.`name` FROM `requests` r LEFT JOIN `users` u ON u.`id` = r.`user_id` WHERE r.`mod` = 1 AND u.`role_id` = 3 AND u.`status_id` = 1 ORDER BY r.`name`;');
     $n = 0;
     while ($row = mysqli_fetch_assoc($sql)) {
         if ($n == 12) {
             $html .= '</div><div class="service-col">';
             $n = 0;
         }
-
-        // Выводим имя сервиса и тариф
-        $html .= '<label class="service-row">
-                    <input data-check-flag="" type="checkbox" name="service_id[]" value="' . $row['user_id'] . '"> 
-                    ' . $row['name'] . '
-                    <br><small>Тариф: ' . ($row['tariff_id'] ? $row['tariff_id'] : 'Не указан') . '</small>
-                    <input type="hidden" name="tariff_id[' . $row['user_id'] . ']" value="' . $row['tariff_id'] . '" />
-                  </label>';
+        $html .= '<label class="service-row"><input data-check-flag="" type="checkbox" name="service_id[]" value="' . $row['user_id'] . '"> ' . $row['name'] . '</label>';
         $n++;
     }
     $html .= '</div>';
