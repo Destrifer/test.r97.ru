@@ -14,15 +14,26 @@ echo '</pre>';
 
 if (isset(core\App::$URLParams['action'])) {
 
-    switch (core\App::$URLParams['action']) {
-        case 'save-service-form':
-            if (!empty($_POST['service_id'])) {
-                models\Tariffs::sychTariff($_POST['service_id']);
-            }
-            header('Location: /prices/');
-            exit;
-            break;
-    }
+	switch (core\App::$URLParams['action']) {
+			case 'save-service-form':
+					if (!empty($_POST['service_id'])) {
+							// Вызываем метод и проверяем, возвращает ли он что-то
+							$result = models\Tariffs::sychTariff($_POST['service_id']);
+							
+							// Проверяем и выводим информацию
+							if ($result === null) {
+									echo "Метод 'sychTariff' не возвращает значение.";
+							} else {
+									echo '<pre>';
+									print_r($result);
+									echo '</pre>';
+							}
+					}
+					// Убираем редирект, чтобы увидеть результат
+					// header('Location: /prices/');
+					// exit;
+					break;
+	}
 }
 
 function check_cats()
