@@ -16,15 +16,22 @@ echo '</pre>';
 
 if (isset(core\App::$URLParams['action'])) {
 
-    switch (core\App::$URLParams['action']) {
-        case 'save-service-form':
-            if (!empty($_POST['service_id']) && !empty($_POST['tariff_id'])) {
-                models\Tariffs::massChangeTariff($_POST['service_id'], $_POST['tariff_id']);
-            }
-            header('Location: /prices/');
-            exit;
-            break;
-    }
+	switch (core\App::$URLParams['action']) {
+			case 'save-service-form':
+					if (!empty($_POST['service_id']) && !empty($_POST['tariff_id'])) {
+							// Получаем результат вызова метода
+							$result = models\Tariffs::massChangeTariff($_POST['service_id'], $_POST['tariff_id']);
+							
+							// Выводим результат, если он есть
+							echo '<pre>';
+							print_r($result);  // Или var_dump($result), если нужно больше информации
+							echo '</pre>';
+					} else {
+							// Если параметры не переданы, выводим сообщение
+							echo "Ошибка: service_id и tariff_id должны быть переданы в POST.";
+					}
+					break;
+	}
 }
 
 function check_cats()
