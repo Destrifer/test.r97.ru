@@ -4,6 +4,16 @@ use models\Users;
 use program\core;
 use program\core\App;
 
+// Вывод содержимого $_GET
+echo '<pre>';
+print_r($_GET);
+echo '</pre>';
+
+// Вывод содержимого $_POST
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
+
 if (isset(core\App::$URLParams['action'])) {
 
     switch (core\App::$URLParams['action']) {
