@@ -4,34 +4,17 @@ use models\Users;
 use program\core;
 use program\core\App;
 
-// Вывод содержимого $_GET
-echo '<pre>';
-print_r($_GET);
-echo '</pre>';
-
-// Вывод содержимого $_POST
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-
 if (isset(core\App::$URLParams['action'])) {
 
-	switch (core\App::$URLParams['action']) {
-			case 'save-service-form':
-					if (!empty($_POST['service_id']) && !empty($_POST['tariff_id'])) {
-							// Получаем результат вызова метода
-							$result = models\Tariffs::massChangeTariff($_POST['service_id'], $_POST['tariff_id']);
-							
-							// Выводим результат, если он есть
-							echo '<pre>';
-							print_r($result);  // Или var_dump($result), если нужно больше информации
-							echo '</pre>';
-					} else {
-							// Если параметры не переданы, выводим сообщение
-							echo "Ошибка: service_id и tariff_id должны быть переданы в POST.";
-					}
-					break;
-	}
+    switch (core\App::$URLParams['action']) {
+        case 'save-service-form':
+            if (!empty($_POST['service_id']) && !empty($_POST['tariff_id'])) {
+                models\Tariffs::massChangeTariff($_POST['service_id'], $_POST['tariff_id']);
+            }
+            header('Location: /prices/');
+            exit;
+            break;
+    }
 }
 
 function check_cats()
