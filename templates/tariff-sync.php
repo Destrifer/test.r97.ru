@@ -45,6 +45,8 @@ function check_cats()
 
 check_cats();
 
+
+
 function content_list()
 {
     global $db;
@@ -135,7 +137,7 @@ function cat($id)
                 </div>
 
                 <div class="not-container">
-                    <button style="position:relative; margin-left: 120px; margin-top: 15px;" type="button" class="button-default show-notifications js-show-notifications animated swing">
+                    <button style="position:relative;    margin-left: 120px;   margin-top: 15px;" type="button" class="button-default show-notifications js-show-notifications animated swing">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="32" viewBox="0 0 30 32">
                             <defs>
                                 <g id="icon-bell">
@@ -152,42 +154,98 @@ function cat($id)
                     </button>
                 </div>
 
-            </div>
-        </div>
+                <div class="logout">
 
-        <div class="site-container">
-
-            <div class="content">
-                <div class="container">
-                    <form method="post" action="" class="page-form js-form" enctype="multipart/form-data">
-                        <div class="form-row">
-
-                            <div class="service">
-                                <?php
-                                $sql = mysqli_query($db, 'SELECT * FROM `services`');
-                                while ($row = mysqli_fetch_array($sql)) {
-                                    echo '<label class="service-row">
-                                            <input data-check-flag="" type="checkbox" name="service_id[]" value="' . $row['user_id'] . '"> 
-                                            ' . $row['name'] . '
-                                            <input type="hidden" name="tariff_id[' . $row['user_id'] . ']" value="' . $row['tariff_id'] . '">
-                                            <br><small>Тариф: ' . ($row['tariff_id'] ? $row['tariff_id'] : 'Не указан') . '</small>
-                                        </label>';
-                                }
-                                ?>
-                            </div>
-                            <div class="service-col">
-                                <button type="submit" class="button">Сохранить</button>
-                            </div>
-                        </div>
-                    </form>
-
+                    <a href="/logout/">Выйти, <?= \models\User::getData('login'); ?></a>
                 </div>
+
             </div>
+        </div><!-- .site-header -->
 
+        <div class="wrapper">
+
+            <?= top_menu_admin(); ?>
+
+            <div class="adm-tab">
+
+                <?= menu_dash(); ?>
+
+            </div><!-- .adm-tab -->
+            <br>
+            <h2>Синхронизировать тарифы</h2>
+
+            <div class="adm-catalog">
+
+                <div class="add">
+                    <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/prices/" class="button">Тарифы</a>
+                </div>
+                <br>
+
+                <form action="?action=save-service-form" method="POST">
+                    <h3 style="font-size: 21px;font-weight: 300;">Выберите СЦ для синхронизации тарифов:</h3>
+                    <div style="margin-top: 32px;font-weight: 600"><label><input type="checkbox" data-check-all-flags> Выделить все</label></div>
+                    <div>
+                        <?php
+                        echo getServicesHTML();
+                        ?>
+                    </div>
+                    <div style="margin-top: 32px; margin-bottom: 32px">
+                        <button type="submit" style="padding: 0 72px;">Синхронизировать</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
+    </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('[data-check-all-flags]').on('change', function() {
+                $('[data-check-flag]').attr('checked', this.checked).trigger('refresh');
+            });
+        });
+    </script>
 </body>
 
 </html>
+
+
+<?php
+
+function getServicesHTML()
+{
+    global $db;
+    $html = '<div class="service-col">';
+
+    // Запрос для получения сервисов с тарифами
+    $sql = mysqli_query($db, '
+        SELECT r.`user_id`, r.`name`, r.`tariff_id` 
+        FROM `requests` r 
+        LEFT JOIN `users` u ON u.`id` = r.`user_id` 
+        WHERE r.`mod` = 1 AND u.`role_id` = 3 AND u.`status_id` = 1 
+        ORDER BY r.`name`;
+    ');
+
+    $n = 0;
+    while ($row = mysqli_fetch_assoc($sql)) {
+        if ($n == 12) {
+            $html .= '</div><div class="service-col">';
+            $n = 0;
+        }
+
+        // Добавляем скрытое поле для передачи tariff_id
+        $html .= '<label class="service-row">
+                    <input data-check-flag="" type="checkbox" name="service_id[]" value="' . $row['user_id'] . '"> 
+                    ' . $row['name'] . '
+                    <br><small>Тариф: ' . ($row['tariff_id'] ? $row['tariff_id'] : 'Не указан') . '</small>';
+
+        // Скрытое поле для тарифов
+        $html .= '<input type="hidden" name="tariff_ids[' . $row['user_id'] . ']" value="' . $row['tariff_id'] . '">
+                  </label>';
+
+        $n++;
+    }
+    $html .= '</div>';
+    return '<div class="service">' . $html . '</div>';
+}
+
