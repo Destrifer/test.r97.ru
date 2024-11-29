@@ -53,7 +53,7 @@ class Tariffs extends _Model
 
     public static function sychTariff(array $servicesIDs)
     {
-        $rows = self::$db->exec('SELECT * FROM `prices`');
+        $rows = self::$db->exec('SELECT * FROM `prices_2`');
         foreach ($servicesIDs as $serviceID) {
             if ($serviceID == 33) { // ИП Кулиджанов
                 self::sychTariffSpecial($rows);
