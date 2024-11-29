@@ -58,11 +58,17 @@ class Tariffs extends _Model
         $tariffID = self::$db->exec('SELECT tariff_id FROM `requests` WHERE `user_id` = ?', [$serviceID])[0]['tariff_id'];
 
         // Определяем таблицу на основе tariff_id
-        $tableName = match ($tariffID) {
-            2 => 'prices-2',
-            3 => 'prices-2023',
-            default => 'prices', // По умолчанию используем 'prices' для tariff_id = 1 или отсутствующего
-        };
+        switch ($tariffID) {
+            case 2:
+                $tableName = 'prices-2';
+                break;
+            case 3:
+                $tableName = 'prices-2023';
+                break;
+            default:
+                $tableName = 'prices'; // По умолчанию используем 'prices'
+                break;
+        }
 
         // Получаем данные из нужной таблицы
         $rows = self::$db->exec("SELECT * FROM `$tableName`");
@@ -84,7 +90,6 @@ class Tariffs extends _Model
             VALUES ' . implode(',', $query));
     }
 }
-
 
 
     private static function sychTariffSpecial(array $tariffs)
