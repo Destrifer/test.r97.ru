@@ -216,29 +216,14 @@ function getServicesHTML()
 {
     global $db;
     $html = '<div class="service-col">';
-
-    // Запрос для получения сервисов с тарифами
-    $sql = mysqli_query($db, '
-        SELECT r.`user_id`, r.`name`, r.`tariff_id` 
-        FROM `requests` r 
-        LEFT JOIN `users` u ON u.`id` = r.`user_id` 
-        WHERE r.`mod` = 1 AND u.`role_id` = 3 AND u.`status_id` = 1 
-        ORDER BY r.`name`;
-    ');
-
+    $sql = mysqli_query($db, 'SELECT r.`user_id`, r.`name` FROM `requests` r LEFT JOIN `users` u ON u.`id` = r.`user_id` WHERE r.`mod` = 1 AND u.`role_id` = 3 AND u.`status_id` = 1 ORDER BY r.`name`;');
     $n = 0;
     while ($row = mysqli_fetch_assoc($sql)) {
         if ($n == 12) {
             $html .= '</div><div class="service-col">';
             $n = 0;
         }
-
-        // Выводим имя сервиса и тариф
-        $html .= '<label class="service-row">
-                    <input data-check-flag="" type="checkbox" name="service_id[]" value="' . $row['user_id'] . '"> 
-                    ' . $row['name'] . '
-                    <br><small>Тариф: ' . ($row['tariff_id'] ? $row['tariff_id'] : 'Не указан') . '</small>
-                  </label>';
+        $html .= '<label class="service-row"><input data-check-flag="" type="checkbox" name="service_id[]" value="' . $row['user_id'] . '"> ' . $row['name'] . '</label>';
         $n++;
     }
     $html .= '</div>';
