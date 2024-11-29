@@ -44,11 +44,53 @@ class Tariffs extends _Model
         return self::$db->exec('UPDATE `requests` SET `transport_tariff_id` = ? WHERE `user_id` IN (' . SQL::IN($servicesIDs, false) . ')', [$tariffID]);
     }
 
-
+		
     public static function massChangeTariff(array $servicesIDs, $tariffID)
-    {
-        return self::$db->exec('UPDATE `requests` SET `tariff_id` = ? WHERE `user_id` IN (' . SQL::IN($servicesIDs, false) . ')', [$tariffID]);
+{
+    // Обновляем тариф для всех переданных сервисов
+    self::$db->exec(
+        'UPDATE `requests` SET `tariff_id` = ? WHERE `user_id` IN (' . SQL::IN($servicesIDs, false) . ')',
+        [$tariffID]
+    );
+
+    // Определяем таблицу на основе tariffID
+    switch ($tariffID) {
+        case 2:
+            $tableName = 'prices_2';
+            break;
+        case 3:
+            $tableName = 'prices-2023';
+            break;
+        default:
+            $tableName = 'prices'; // По умолчанию используем 'prices'
+            break;
     }
+
+    // Получаем данные из нужной таблицы
+    $rows = self::$db->exec("SELECT * FROM `$tableName`");
+
+    // Синхронизируем каждый сервис
+    foreach ($servicesIDs as $serviceID) {
+        if ($serviceID == 33) { // ИП Кулиджанов
+            self::sychTariffSpecial($rows);
+            continue;
+        }
+
+        // Удаляем старые записи и добавляем новые
+        self::$db->exec('DELETE FROM `prices_service` WHERE `service_id` = ?', [$serviceID]);
+
+        $query = [];
+        foreach ($rows as $row) {
+            $query[] = '(' . $serviceID . ', ' . $row['cat_id'] . ', ' . $row['block'] . ', ' . $row['element'] . ', ' . $row['acess'] . ', ' . $row['anrp'] . ', ' . $row['ato'] . ')';
+        }
+
+        self::$db->exec('INSERT INTO `prices_service` (`service_id`, `cat_id`, `block`, `component`, `access`, `anrp`, `ato`) 
+            VALUES ' . implode(',', $query));
+    }
+
+    return true;
+}
+
 
 
     public static function sychTariff(array $servicesIDs)
