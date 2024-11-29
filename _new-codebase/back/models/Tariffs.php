@@ -60,7 +60,7 @@ class Tariffs extends _Model
         // Определяем таблицу на основе tariff_id
         switch ($tariffID) {
             case 2:
-                $tableName = 'prices-2';
+                $tableName = 'prices_2';
                 break;
             case 3:
                 $tableName = 'prices-2023';
