@@ -51,38 +51,37 @@ class Tariffs extends _Model
     }
 
 
-    public static function sychTariff(array $servicesIDs, int $tariffID)
+    public static function sychTariff(array $servicesIDs)
 {
-    // Определяем имя таблицы в зависимости от tariff_id
-    $tableName = match ($tariffID) {
-        1 => 'prices',
-        2 => 'prices-2',
-        3 => 'prices-2023',
-        default => throw new InvalidArgumentException("Неизвестный тариф: $tariffID"),
-    };
-
-    // Получаем данные из соответствующей таблицы
-    $rows = self::$db->exec("SELECT * FROM `$tableName`");
-
     foreach ($servicesIDs as $serviceID) {
+        // Получаем tariff_id для текущего serviceID
+        $tariffID = self::$db->exec('SELECT tariff_id FROM `requests` WHERE `user_id` = ?', [$serviceID])[0]['tariff_id'];
+
+        // Определяем таблицу на основе tariff_id
+        $tableName = match ($tariffID) {
+            2 => 'prices-2',
+            3 => 'prices-2023',
+            default => 'prices', // По умолчанию используем 'prices' для tariff_id = 1 или отсутствующего
+        };
+
+        // Получаем данные из нужной таблицы
+        $rows = self::$db->exec("SELECT * FROM `$tableName`");
+
         if ($serviceID == 33) { // ИП Кулиджанов
             self::sychTariffSpecial($rows);
             continue;
         }
 
-        // Удаляем старые записи
+        // Удаляем старые записи и добавляем новые
         self::$db->exec('DELETE FROM `prices_service` WHERE `service_id` = ?', [$serviceID]);
 
         $query = [];
         foreach ($rows as $row) {
-            $query[] = '(' . $serviceID . ', ' . $row['cat_id'] . ', ' . $row['block'] . ', ' . $row['element'] . ', ' . $row['access'] . ', ' . $row['anrp'] . ', ' . $row['ato'] . ')';
+            $query[] = '(' . $serviceID . ', ' . $row['cat_id'] . ', ' . $row['block'] . ', ' . $row['element'] . ', ' . $row['acess'] . ', ' . $row['anrp'] . ', ' . $row['ato'] . ')';
         }
 
-        // Вставляем новые записи
-        if (!empty($query)) {
-            self::$db->exec('INSERT INTO `prices_service` (`service_id`, `cat_id`, `block`, `component`, `access`, `anrp`, `ato`) 
-                VALUES ' . implode(',', $query));
-        }
+        self::$db->exec('INSERT INTO `prices_service` (`service_id`, `cat_id`, `block`, `component`, `access`, `anrp`, `ato`) 
+            VALUES ' . implode(',', $query));
     }
 }
 
