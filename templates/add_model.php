@@ -89,7 +89,7 @@ mysqli_query($db, 'INSERT INTO `serials` (
 
 }   */
 
-header('Location: '.$config['url'].'models/');
+header('Location: /models/');
 }
 
 
