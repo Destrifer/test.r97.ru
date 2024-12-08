@@ -27,32 +27,22 @@ class Serials extends _Model
 
 
     public static function addSerial($serial, $modelID, $lot, $order, $providerID, $plantID)
-{
-    if (empty($serial) || empty($modelID)) {
-        self::$message = 'Модель или серийный номер отсутствуют.';
-        return false;
+    {
+        if (empty($serial) || empty($modelID)) {
+            self::$message = 'Модель или серийный номер отсутствуют.';
+            return false;
+        }
+        $serial = trim($serial);
+        $id = self::$db->exec('INSERT INTO `serials` (`model_id`, `serial`, `provider_id`, `order`,
+            `plant_id`, `lot`) VALUES 
+            (' . $modelID . ', "' . $serial . '", "' . $providerID . '", "' . $order . '",
+            "' . $plantID . '", "' . $lot . '")');
+        if (!$id) {
+            self::$message = self::$db->getErrorInfo();
+            return false;
+        }
+        return true;
     }
-
-    $serial = trim($serial);
-
-    // Получаем максимальное значение id из таблицы
-    $currentMaxId = self::$db->query('SELECT MAX(id) AS max_id FROM `serials`')->fetch()['max_id'];
-    $newId = $currentMaxId + 1;
-
-    // Выполняем запрос с указанным id
-    $query = 'INSERT INTO `serials` (`id`, `model_id`, `serial`, `provider_id`, `order`, `plant_id`, `lot`) VALUES 
-        (' . (int)$newId . ', ' . (int)$modelID . ', "' . $serial . '", "' . $providerID . '", "' . $order . '", "' . $plantID . '", "' . $lot . '")';
-
-    $result = self::$db->exec($query);
-
-    if (!$result) {
-        self::$message = self::$db->getErrorInfo();
-        return false;
-    }
-
-    return true;
-}
-
 
 
     public static function delSerial($serialID)
