@@ -64,14 +64,7 @@ admin_log_add('Добавлена новая модель '.$_POST['name']);
 $count = count($_POST['serials_first']);
 $count_arrays = 0;
 
-while ($count_arrays < $count) {
 
-\models\Serials::addSerial($_POST['serials_first'][$count_arrays], $id, 
-$_POST['serials_lot'][$count_arrays], $_POST['order'][$count_arrays], 
-$_POST['serial_provider'][$count_arrays], $_POST['plant_id'][$count_arrays]);  
-Util::updateSerialInvalidFlag($_POST['serials_first'][$count_arrays], $id);
-$count_arrays++;
-}
 
 /*foreach ($_POST['serials'] as $serial) {
 
