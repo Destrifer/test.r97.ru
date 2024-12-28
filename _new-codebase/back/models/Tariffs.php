@@ -30,25 +30,13 @@ class Tariffs extends _Model
 
 
     public static function getTransportTariffTable($serviceID)
-		{
-				// Получаем transport_tariff_id из таблицы requests
-				$rows = self::$db->exec('SELECT `transport_tariff_id` FROM `requests` WHERE `user_id` = ?', [$serviceID]);
-				$transportTariffID = $rows[0]['transport_tariff_id'] ?? null; 
-
-				// Определяем таблицу на основе transport_tariff_id
-				switch ($transportTariffID) {
-						case 1:
-								return 'transfer_2';  // для tariff_id = 1
-						case 2:
-								return 'transfer';    // для tariff_id = 2
-						case 3:
-								return 'transfer_3'; // для tariff_id = 3
-						default:
-								// Можно указать таблицу по умолчанию, если тариф не задан или не попал в перечисленные
-								return 'transfer_2';  
-				}
-		}
-
+    {
+        $rows = self::$db->exec('SELECT `transport_tariff_id` FROM `requests` WHERE `user_id` = ?', [$serviceID]);
+        if (empty($rows[0]['transport_tariff_id']) || $rows[0]['transport_tariff_id'] == 1) { // Тариф 2018
+            return 'transfer_2';
+        }
+        return 'transfer';
+    }
 
 
     public static function massChangeTransportTariff(array $servicesIDs, $tariffID)
