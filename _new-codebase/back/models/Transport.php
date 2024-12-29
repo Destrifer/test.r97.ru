@@ -29,7 +29,7 @@ class Transport extends _Model
     }
 
 
-    public static function sychTransportTariff(array $servicesIDs)
+    public static function sychTariff(array $servicesIDs)
 	{
 			foreach ($servicesIDs as $serviceID) {
 					// Получаем transport_tariff_id из таблицы requests
@@ -85,6 +85,7 @@ class Transport extends _Model
 					}
 			}
 	}
+
 }
 
 
