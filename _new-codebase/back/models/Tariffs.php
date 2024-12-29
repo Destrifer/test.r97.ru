@@ -39,10 +39,67 @@ class Tariffs extends _Model
     }
 
 
-    public static function massChangeTransportTariff(array $servicesIDs, $tariffID)
-    {
-        return self::$db->exec('UPDATE `requests` SET `transport_tariff_id` = ? WHERE `user_id` IN (' . SQL::IN($servicesIDs, false) . ')', [$tariffID]);
-    }
+		public static function massChangeTransportTariff(array $servicesIDs, int $tariffID)
+		{
+				// 1) Меняем тариф для всех сервисов из списка
+				self::$db->exec(
+						'UPDATE `requests` 
+						SET `transport_tariff_id` = ? 
+						WHERE `user_id` IN (' . SQL::IN($servicesIDs, false) . ')',
+						[$tariffID]
+				);
+
+				// 2) Определяем таблицу, из которой будем брать записи
+				switch ($tariffID) {
+						case 2:
+								$tableName = 'transfer';
+								break;
+						case 3:
+								$tableName = 'transfer_3';
+								break;
+						default:
+								// Считаем, что "1" или пустое значение → 'transfer_2'
+								$tableName = 'transfer_2';
+				}
+
+				// 3) Получаем все строки из выбранной таблицы
+				$rows = self::$db->exec("SELECT * FROM `$tableName`");
+
+				// 4) Для каждого сервиса чистим старые данные и вставляем новые
+				foreach ($servicesIDs as $serviceID) {
+						self::$db->exec(
+								'DELETE FROM `transfer_service` WHERE `service_id` = ?',
+								[$serviceID]
+						);
+
+						// Формируем массив значений для вставки
+						$values = [];
+						foreach ($rows as $row) {
+								$values[] = '(' 
+										. (int)$serviceID . ', ' 
+										. (int)$row['cat_id'] . ', ' 
+										. (int)$row['shop'] . ', ' 
+										. (int)$row['buyer'] . ', ' 
+										. (float)$row['zone_1'] . ', ' 
+										. (float)$row['zone_2'] . ', ' 
+										. (float)$row['zone_3'] . ', ' 
+										. (float)$row['zone_4'] 
+								. ')';
+						}
+
+						// Выполняем массовую вставку (если есть что вставлять)
+						if (!empty($values)) {
+								self::$db->exec(
+										'INSERT INTO `transfer_service` 
+										(`service_id`, `cat_id`, `shop`, `buyer`, `zone_1`, `zone_2`, `zone_3`, `zone_4`) 
+										VALUES ' . implode(',', $values)
+								);
+						}
+				}
+
+				return true;
+		}
+
 
 		
     public static function massChangeTariff(array $servicesIDs, $tariffID)
