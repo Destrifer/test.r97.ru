@@ -1055,11 +1055,7 @@ class Parts extends _Model
             $modelID = $row['model_id'];
             if (!isset($res[$modelID])) {
                 $m = Models::getModel($modelID);
-                if (!$m || !isset($m['id'], $m['cat'], $m['name'])) {
-									// Обработка случая, когда данные отсутствуют
-									$res[$modelID] = ['id' => null, 'cat_id' => null, 'name' => null, 'serials' => []];
-									continue; // Пропускаем итерацию
-								}
+                $res[$modelID] = ['id' => $m['id'], 'cat_id' => $m['cat'], 'name' => $m['name'], 'serials' => []];
             }
             $s = Serials::getSerial($row['model_serial'], $row['model_id']);
             $row['provider'] = $s['provider'];
