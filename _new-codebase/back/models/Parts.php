@@ -1043,29 +1043,52 @@ class Parts extends _Model
 
 
     public static function getModels($partID, $limit = 0)
-    {
-        $limitSQL = ($limit) ? ' LIMIT ' . $limit : '';
-        $rows = self::$db->exec('SELECT 
-        p.`id`, p.`model_cat_id`, p.`model_id`, p.`model_serial` 
-        FROM `' . self::TABLE_MODELS . '` p 
-        WHERE p.`part_id` = ? ORDER BY p.`id`' . $limitSQL, [$partID]);
-        $res = [];
-        /* Группировка по моделям */
-        foreach ($rows as $row) {
-            $modelID = $row['model_id'];
-            if (!isset($res[$modelID])) {
-                $m = Models::getModel($modelID);
-                $res[$modelID] = ['id' => $m['id'], 'cat_id' => $m['cat'], 'name' => $m['name'], 'serials' => []];
-            }
-            $s = Serials::getSerial($row['model_serial'], $row['model_id']);
-            $row['provider'] = $s['provider'];
-            $row['order'] = $s['order'];
-            $row['model_serial_id'] = $s['id'];
-            $row['full_model_serial'] = self::getFullSerial($s);
-            $res[$modelID]['serials'][] = $row;
-        }
-        return $res;
-    }
+		{
+				$limitSQL = ($limit) ? ' LIMIT ' . $limit : '';
+				$rows = self::$db->exec('SELECT 
+				p.`id`, p.`model_cat_id`, p.`model_id`, p.`model_serial` 
+				FROM `' . self::TABLE_MODELS . '` p 
+				WHERE p.`part_id` = ? ORDER BY p.`id`' . $limitSQL, [$partID]);
+				$res = [];
+				/* Группировка по моделям */
+				foreach ($rows as $row) {
+						$modelID = $row['model_id'];
+						if (!isset($res[$modelID])) {
+								$m = Models::getModel($modelID);
+
+								// Проверяем, содержит ли $m необходимые ключи
+								if (!$m || !isset($m['id'], $m['cat'], $m['name'])) {
+										// Пропускаем итерацию, если данные отсутствуют
+										continue;
+								}
+
+								$res[$modelID] = [
+										'id' => $m['id'],
+										'cat_id' => $m['cat'],
+										'name' => $m['name'],
+										'serials' => []
+								];
+						}
+
+						// Получаем данные о серийных номерах
+						$s = Serials::getSerial($row['model_serial'], $row['model_id']);
+
+						// Проверяем, содержит ли $s необходимые ключи
+						if (!$s || !isset($s['provider'], $s['order'], $s['id'])) {
+								// Пропускаем итерацию, если данные отсутствуют
+								continue;
+						}
+
+						$row['provider'] = $s['provider'];
+						$row['order'] = $s['order'];
+						$row['model_serial_id'] = $s['id'];
+						$row['full_model_serial'] = self::getFullSerial($s);
+
+						$res[$modelID]['serials'][] = $row;
+				}
+				return $res;
+		}
+
 
 
     public static function getSerials($modelID)
