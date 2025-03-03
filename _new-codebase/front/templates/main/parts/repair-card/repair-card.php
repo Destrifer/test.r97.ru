@@ -16,6 +16,7 @@ function getStepsNavHTML(array $steps)
 
 function getSummaryHTML(array $summary)
 {
+	echo '<pre>Статус в getSummaryHTML: ' . print_r($summary['status'] ?? 'Нет данных', true) . '</pre>';
     $html = '
     
     <aside class="repair-card__summary">
