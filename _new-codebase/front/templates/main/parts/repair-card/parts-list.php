@@ -222,6 +222,7 @@ function getPartsListHTML(array $parts)
 
 function getPartsListItemsHTML(array $parts)
 {
+		global $repair_status;
     ob_start();
     echo '<div class="row">';
     if (!$parts) {
