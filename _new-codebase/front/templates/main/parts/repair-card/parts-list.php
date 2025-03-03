@@ -201,9 +201,9 @@ function getPartsListHTML(array $parts)
 
 function getPartsListItemsHTML(array $parts)
 {
-		echo '<pre>Статус в getPartsListItemsHTML: ' . print_r($summary['status'] ?? 'Нет данных', true) . '</pre>';
     ob_start();
     echo '<div class="row">';
+		echo '<pre>Статус в getPartsListItemsHTML: ' . print_r($summary['status'] ?? 'Нет данных', true) . '</pre>';
     if (!$parts) {
         echo '<div class="col-12"><p style="text-align: center;padding: 32px 0">Запчасти отсутствуют.</p></div>';
     } else {
