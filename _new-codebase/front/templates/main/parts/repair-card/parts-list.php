@@ -1,6 +1,24 @@
 <?php
 
-echo '<pre>Все глобальные переменные: ' . print_r($GLOBALS, true) . '</pre>';
+// Проверяем, передан ли ID ремонта
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+	exit('<p style="color: red;">Ошибка: ID ремонта не передан!</p>');
+}
+
+// Получаем ID ремонта из GET-параметров
+$repair_id = (int) $_GET['id']; // Приводим к числу для безопасности
+
+// Загружаем данные о ремонте
+$repair = models\Repair::getRepairByID($repair_id);
+
+// Проверяем, получены ли данные
+if (!$repair) {
+	exit('<p style="color: red;">Ошибка: Ремонт с ID ' . $repair_id . ' не найден!</p>');
+}
+
+// Отладка: проверяем, что $repair содержит данные
+echo '<pre>Отладка: Загруженные данные ремонта: ' . print_r($repair, true) . '</pre>';
+
 
 function filterFormHTML(
     $userRole,
