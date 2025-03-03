@@ -1,5 +1,19 @@
 <?php
 
+// Проверяем, был ли передан ID ремонта
+$repair_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+// Если ID передан, получаем данные о ремонте
+$repair_status = 'Неизвестно'; // Значение по умолчанию
+
+if ($repair_id > 0) {
+    $repair = models\Repair::getRepairByID($repair_id);
+    
+    if (!empty($repair['status'])) {
+        $repair_status = $repair['status'];
+    }
+}
+
 function filterFormHTML(
     $userRole,
     array $countries,
@@ -10,7 +24,6 @@ function filterFormHTML(
     array $cats,
     array $groups
 ) {
-
     $isAdmin = in_array($userRole, ['admin', 'store', 'slave-admin', 'master']);
     $col = ($isAdmin && $userRole != 'master') ? 'col-3' : 'col-4';
 ?>
