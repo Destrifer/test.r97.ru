@@ -1,7 +1,28 @@
 <?php
 
-// Отладка: проверяем статус ремонта
-echo '<pre>Отладка: Статус ремонта в parts-list.php: ' . $content . '</pre>';
+// Проверяем, передан ли ID ремонта
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    echo '<p style="color: red;">Ошибка: ID ремонта не передан.</p>';
+    return; // Прерываем выполнение скрипта
+}
+
+// Получаем ID ремонта
+$repair_id = (int) $_GET['id'];
+
+// Загружаем данные о ремонте
+$repair = models\Repair::getRepairByID($repair_id);
+
+// Проверяем, получены ли данные
+if (!$repair || empty($repair['status'])) {
+    echo '<p style="color: red;">Ошибка: Не удалось загрузить данные ремонта.</p>';
+    return; // Прерываем выполнение скрипта
+}
+
+// Получаем статус ремонта
+$repair_status = $repair['status'];
+
+// Отладка: выводим загруженный статус
+echo '<pre>Отладка: Статус ремонта в parts-list.php: ' . htmlspecialchars($repair_status) . '</pre>';
 
 function filterFormHTML(
     $userRole,
