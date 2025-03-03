@@ -1,5 +1,7 @@
 <?php
 
+echo '<pre>Все глобальные переменные: ' . print_r($GLOBALS, true) . '</pre>';
+
 function filterFormHTML(
     $userRole,
     array $countries,

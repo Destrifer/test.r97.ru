@@ -1,7 +1,5 @@
 <?php
 
-echo '<pre>Все глобальные переменные: ' . print_r($GLOBALS, true) . '</pre>';
-
 function getStepsNavHTML(array $steps)
 {
     $html = '<nav class="progress">';
