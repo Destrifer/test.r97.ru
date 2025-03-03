@@ -214,46 +214,31 @@ function old(array $groups, array $providers, array $cats, $userRole = '', $hasS
 
 function getPartsListHTML(array $parts)
 {
-    global $repair_status;
     ob_start();
-    echo getPartsListItemsHTML($parts, $repair_status);
+    echo getPartsListItemsHTML($parts);
     return ob_get_clean();
 }
 
 
-function getPartsListItemsHTML(array $parts, $repair_status)
+function getPartsListItemsHTML(array $parts)
 {
     ob_start();
     echo '<div class="row">';
-
     if (!$parts) {
         echo '<div class="col-12"><p style="text-align: center;padding: 32px 0">Запчасти отсутствуют.</p></div>';
     } else {
         foreach ($parts as $part) {
-            echo '<div data-part class="col-12 col-sm-6" style="padding-bottom: 32px;"
-                 data-has-original-flag="' . ((!empty($part['has_original_flag'])) ? '1' : '0') . '"
-                 data-attr-id="' . $part['attr_id'] . '"
-                 data-type-id="' . $part['type_id'] . '"
-                 data-group-id="' . $part['group_id'] . '"
-                 data-origin="store"
-                 data-id="' . $part['id'] . '">';
-
-            echo '<div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
+            echo '<div data-part class="col-12 col-sm-6" style="padding-bottom: 32px;" data-has-original-flag="' . ((!empty($part['has_original_flag'])) ? '1' : '0') . '" data-attr-id="' . $part['attr_id'] . '" data-type-id="' . $part['type_id'] . '" data-group-id="' . $part['group_id'] . '" data-origin="store" data-id="' . $part['id'] . '">
+            <div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
             mainCol($part);
             photosCol($part['photos']);
-
-            // Выводим статус ремонта
-            echo '<p style="font-weight: bold; color: #333;">Статус ремонта: ' . htmlspecialchars($repair_status) . '</p>';
-
-            // Скрываем кнопку, если статус "Подтверждён", "Выдан" или "Отклонён"
             if (!in_array($repair_status, ['Подтверждён', 'Выдан', 'Отклонён'])) {
-                controlsCol();
-            }
-
-            echo '</div></div>';
+							controlsCol();
+						}
+            echo '</div>
+            </div>';
         }
     }
-
     echo '</div>';
     return ob_get_clean();
 }
