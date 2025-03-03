@@ -201,6 +201,7 @@ function getPartsListHTML(array $parts)
 
 function getPartsListItemsHTML(array $parts)
 {
+	echo '<pre>Статус в getPartsListItemsHTML: ' . print_r($summary['status'] ?? 'Нет данных', true) . '</pre>';
     ob_start();
     echo '<div class="row">';
     if (!$parts) {
