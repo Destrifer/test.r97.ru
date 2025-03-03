@@ -1,12 +1,5 @@
 <?php
 
-// Получаем ID ремонта из GET-параметров
-$repair_id = (int) $_GET['id']; // Приводим к числу для безопасности
-
-// Загружаем данные о ремонте
-$repair = models\Repair::getRepairByID($repair_id);
-$repair_status = $repair['status']; // Статус ремонта
-
 function filterFormHTML(
     $userRole,
     array $countries,
@@ -197,6 +190,12 @@ function old(array $groups, array $providers, array $cats, $userRole = '', $hasS
             </div>';
 }
 
+// Получаем ID ремонта из GET-параметров
+$repair_id = (int) $_GET['id']; // Приводим к числу для безопасности
+
+// Загружаем данные о ремонте
+$repair = models\Repair::getRepairByID($repair_id);
+$repair_status = $repair['status']; // Статус ремонта
 
 function getPartsListHTML(array $parts, $repair_status)
 {
