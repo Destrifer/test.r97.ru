@@ -1,6 +1,6 @@
 <?php
 
-echo '<pre>Отладка: $repair перед include repair-card.php: ' . print_r($repair, true) . '</pre>';
+echo '<pre>Все глобальные переменные: ' . print_r($GLOBALS, true) . '</pre>';
 
 function getStepsNavHTML(array $steps)
 {
