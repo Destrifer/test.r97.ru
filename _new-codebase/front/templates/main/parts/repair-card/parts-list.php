@@ -1,21 +1,7 @@
 <?php
 
-// Проверяем, был ли передан ID ремонта
-$repair_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-
-// Если ID передан, получаем данные о ремонте
-$repair_status = 'Неизвестно'; // Значение по умолчанию
-
-if ($repair_id > 0) {
-    $repair = models\Repair::getRepairByID($repair_id);
-    
-    if (!empty($repair['status'])) {
-        $repair_status = $repair['status'];
-    }
-}
-
 // Отладка: проверяем статус ремонта
-echo '<pre>Отладка: Статус ремонта в parts-list.php: ' . htmlspecialchars($repair_status) . '</pre>';
+echo '<pre>Отладка: Статус ремонта в parts-list.php: ' . $content . '</pre>';
 
 function filterFormHTML(
     $userRole,
