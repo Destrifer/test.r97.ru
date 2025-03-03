@@ -10,6 +10,9 @@ function filterFormHTML(
     array $cats,
     array $groups
 ) {
+	$repair_id = (int) $_GET['id'];
+	$repair = models\Repair::getRepairByID($repair_id);
+	$repair_status = $repair['status']; // Статус ремонта
     $isAdmin = in_array($userRole, ['admin', 'store', 'slave-admin', 'master']);
     $col = ($isAdmin && $userRole != 'master') ? 'col-3' : 'col-4';
 ?>
@@ -190,53 +193,32 @@ function old(array $groups, array $providers, array $cats, $userRole = '', $hasS
             </div>';
 }
 
-// Получаем ID ремонта из GET-параметров
-$repair_id = (int) $_GET['id']; // Приводим к числу для безопасности
 
-// Загружаем данные о ремонте
-$repair = models\Repair::getRepairByID($repair_id);
-$repair_status = $repair['status']; // Статус ремонта
-
-function getPartsListHTML(array $parts, $repair_status)
+function getPartsListHTML(array $parts)
 {
     ob_start();
-    echo getPartsListItemsHTML($parts, $repair_status);
+    echo getPartsListItemsHTML($parts);
     return ob_get_clean();
 }
 
-function getPartsListItemsHTML(array $parts, $repair_status)
+
+function getPartsListItemsHTML(array $parts)
 {
     ob_start();
     echo '<div class="row">';
-    
     if (!$parts) {
         echo '<div class="col-12"><p style="text-align: center;padding: 32px 0">Запчасти отсутствуют.</p></div>';
     } else {
         foreach ($parts as $part) {
-            echo '<div data-part class="col-12 col-sm-6" style="padding-bottom: 32px;"
-                 data-has-original-flag="' . ((!empty($part['has_original_flag'])) ? '1' : '0') . '"
-                 data-attr-id="' . $part['attr_id'] . '"
-                 data-type-id="' . $part['type_id'] . '"
-                 data-group-id="' . $part['group_id'] . '"
-                 data-origin="store"
-                 data-id="' . $part['id'] . '">';
-
-            echo '<div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
+            echo '<div data-part class="col-12 col-sm-6" style="padding-bottom: 32px;" data-has-original-flag="' . ((!empty($part['has_original_flag'])) ? '1' : '0') . '" data-attr-id="' . $part['attr_id'] . '" data-type-id="' . $part['type_id'] . '" data-group-id="' . $part['group_id'] . '" data-origin="store" data-id="' . $part['id'] . '">
+            <div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
             mainCol($part);
             photosCol($part['photos']);
-
-            // Выводим статус ремонта
-            echo '<p style="font-weight: bold; color: #333;">Статус ремонта: ' . htmlspecialchars($repair_status) . '</p>';
-
-            // Скрываем кнопку, если статус "Подтверждён", "Выдан" или "Отклонён"
-            if (!in_array($repair_status, ['Подтверждён', 'Выдан', 'Отклонён'])) {
-                controlsCol();
-            }
-
-            echo '</div></div>';
+            controlsCol();
+            echo '</div>
+            </div>';
         }
     }
-    
     echo '</div>';
     return ob_get_clean();
 }
