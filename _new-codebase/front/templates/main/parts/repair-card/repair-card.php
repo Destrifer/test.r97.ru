@@ -1,10 +1,6 @@
 <?php
 
-// Получаем данные по ремонту
-$summary = models\RepairCard::getSummary($repair['id']); // Теперь $summary создаётся перед вызовом функций
-
-// Выводим отладку, чтобы убедиться, что $summary содержит данные
-echo '<pre>Отладка: переданный $summary в repair-card.php: ' . print_r($summary, true) . '</pre>';
+echo '<pre>Отладка: $repair перед include repair-card.php: ' . print_r($repair, true) . '</pre>';
 
 function getStepsNavHTML(array $steps)
 {
@@ -19,9 +15,12 @@ function getStepsNavHTML(array $steps)
     return $html . '</nav>';
 }
 
+
 function getSummaryHTML(array $summary)
 {
-    $html = '<aside class="repair-card__summary">
+    $html = '
+    
+    <aside class="repair-card__summary">
 <h3 class="repair-card__summary-title">Ремонт</h3>
 <ul>
   <li class="repair-card__summary-item">№ ' . $summary['repair_id'] . ' от ' . $summary['receive_date'] . '</li>';
@@ -40,7 +39,7 @@ function getSummaryHTML(array $summary)
         }
         $html .= '<li class="repair-card__summary-checkbox-item"><label><input type="checkbox" class="repair-card__summary-ckeckbox" ' . (($summary['has_questions']) ? 'checked' : '') . ' value="1" data-has-questions-checkbox> Есть вопросы</label></li>';
     } else {
-        $html .= '<li class="repair-card__summary-item">' . ($summary['status'] ?? 'Статус не задан') . '</li>';
+        $html .= '<li class="repair-card__summary-item">' . $summary['status'] . '</li>';
     }
     $html .= '</ul>
 <h3 class="repair-card__summary-title">Сервис</h3>
@@ -77,6 +76,7 @@ function getSummaryHTML(array $summary)
     return $html;
 }
 
+
 function getAsideControlsHTML(array $controls = [])
 {
     $html = '';
@@ -102,6 +102,3 @@ function getAsideControlsHTML(array $controls = [])
     ' . $html . '
     </div>';
 }
-
-// Вызываем функции с переданным $summary
-?>
