@@ -1,15 +1,12 @@
 <?php
 
-// Получаем ID ремонта из GET-параметров
 $repair_id = (int) $_GET['id']; // Приводим к числу для безопасности
 
 // Загружаем данные о ремонте
 $repair = models\Repair::getRepairByID($repair_id);
 
-
 // Отладка: проверяем, что $repair содержит данные
-echo '<pre>Отладка: Загруженные данные ремонта: ' . $repair[status] . '</pre>';
-
+echo '<pre>Отладка: Загруженные данные ремонта: ' . $repair['status'] . '</pre>';
 
 function filterFormHTML(
     $userRole,
