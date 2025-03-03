@@ -216,9 +216,12 @@ function getPartsListItemsHTML(array $parts, array $summary = [])
                 data-id="' . ($part['id'] ?? '') . '">
                 
                 <div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
-            
+
             mainCol($part);
             photosCol($part['photos']);
+
+            // Вывод статуса перед кнопкой
+            echo '<p style="font-weight: bold; color: #333;">Статус: ' . htmlspecialchars($summary['status'] ?? 'Не задан') . '</p>';
 
             // Проверка статуса перед отображением кнопки
             if (!isset($summary['status']) || !in_array($summary['status'], ['Подтверждён', 'Выдан', 'Отклонён'])) {
@@ -231,6 +234,7 @@ function getPartsListItemsHTML(array $parts, array $summary = [])
     echo '</div>';
     return ob_get_clean();
 }
+
 
 
 function mainCol(array $part)
