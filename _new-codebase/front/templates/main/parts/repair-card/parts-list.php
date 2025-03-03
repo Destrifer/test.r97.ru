@@ -21,9 +21,6 @@ if (!$repair || empty($repair['status'])) {
 // Получаем статус ремонта
 $repair_status = $repair['status'];
 
-// Отладка: выводим загруженный статус
-echo '<pre>Отладка: Статус ремонта в parts-list.php: ' . htmlspecialchars($repair_status) . '</pre>';
-
 function filterFormHTML(
     $userRole,
     array $countries,
