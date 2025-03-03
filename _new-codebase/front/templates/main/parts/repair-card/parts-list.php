@@ -211,7 +211,7 @@ function getPartsListItemsHTML(array $parts)
             <div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
             mainCol($part);
             photosCol($part['photos']);
-            if ($isAdmin && $userRole != 'master'):
+            if ($userRole != 'master'):
 							controlsCol();
 						endif;
             echo '</div>
