@@ -1,5 +1,5 @@
 <?php
-
+global $summary;
 function filterFormHTML(
     $userRole,
     array $countries,
@@ -201,6 +201,7 @@ function getPartsListHTML(array $parts)
 
 function getPartsListItemsHTML(array $parts)
 {
+		global $summary;
     ob_start();
     echo '<div class="row">';
 		echo '<pre>Статус в getPartsListItemsHTML: ' . print_r($summary['status'] ?? 'Нет данных', true) . '</pre>';
