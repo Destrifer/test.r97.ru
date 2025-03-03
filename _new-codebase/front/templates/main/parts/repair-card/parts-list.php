@@ -199,7 +199,7 @@ function getPartsListHTML(array $parts)
 }
 
 
-function getPartsListItemsHTML(array $parts)
+function getPartsListItemsHTML(array $parts, array $summary = [])
 {
     ob_start();
     echo '<div class="row">';
@@ -207,13 +207,25 @@ function getPartsListItemsHTML(array $parts)
         echo '<div class="col-12"><p style="text-align: center;padding: 32px 0">Запчасти отсутствуют.</p></div>';
     } else {
         foreach ($parts as $part) {
-            echo '<div data-part class="col-12 col-sm-6" style="padding-bottom: 32px;" data-has-original-flag="' . ((!empty($part['has_original_flag'])) ? '1' : '0') . '" data-attr-id="' . $part['attr_id'] . '" data-type-id="' . $part['type_id'] . '" data-group-id="' . $part['group_id'] . '" data-origin="store" data-id="' . $part['id'] . '">
-            <div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
+            echo '<div data-part class="col-12 col-sm-6" style="padding-bottom: 32px;" 
+                data-has-original-flag="' . ((!empty($part['has_original_flag'])) ? '1' : '0') . '" 
+                data-attr-id="' . ($part['attr_id'] ?? '') . '" 
+                data-type-id="' . ($part['type_id'] ?? '') . '" 
+                data-group-id="' . ($part['group_id'] ?? '') . '" 
+                data-origin="store" 
+                data-id="' . ($part['id'] ?? '') . '">
+                
+                <div class="parts-list__item ' . ((!empty($part['has_original_flag'])) ? 'parts-list__item_secondary' : '') . '">';
+            
             mainCol($part);
             photosCol($part['photos']);
-            controlsCol();
-            echo '</div>
-            </div>';
+
+            // Проверка статуса перед отображением кнопки
+            if (!isset($summary['status']) || !in_array($summary['status'], ['Подтверждён', 'Выдан', 'Отклонён'])) {
+                controlsCol();
+            }
+
+            echo '</div></div>';
         }
     }
     echo '</div>';
