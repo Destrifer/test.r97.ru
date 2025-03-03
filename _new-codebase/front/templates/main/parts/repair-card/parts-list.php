@@ -10,9 +10,7 @@ function filterFormHTML(
     array $cats,
     array $groups
 ) {
-	$repair_id = (int) $_GET['id'];
-	$repair = models\Repair::getRepairByID($repair_id);
-	$repair_status = $repair['status']; // Статус ремонта
+
     $isAdmin = in_array($userRole, ['admin', 'store', 'slave-admin', 'master']);
     $col = ($isAdmin && $userRole != 'master') ? 'col-3' : 'col-4';
 ?>
