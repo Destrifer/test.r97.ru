@@ -4981,8 +4981,7 @@ $counter = 1;
       $diff = $date2->diff($date1)->format("%a");
       }
 
-      //if (in_array($content['model']['brand'], explode(',',$_GET['brands']))) {
-				if (true) {
+      if (in_array($content['model']['brand'], explode(',',$_GET['brands']))) {
         $date_current = new DateTime("01/" . $_GET['month'] . "/" . $_GET['year']);
         $date_returns    = new DateTime("01/05/2020");
         $checkReturnsFlag  = ($date_current < $date_returns) ? true : false;
@@ -4995,12 +4994,7 @@ $counter = 1;
          } else {
           $ids[] = $row['id'];
           $totalSum = $content['total_price'] + $content['transport_cost'] + $content['parts_cost'] + $content['install_cost'] + $content['dismant_cost'];
-					$table .= '<tr>
-  <td colspan="25" style="border:0.5px solid #000; text-align:left; font-family:\'Times New Roman\'; font-size:7pt;">
-    <strong>Выбранные бренды:</strong> ' . htmlspecialchars(implode(', ', explode(',', $_GET['brands']))) . '
-  </td>
-</tr>';
-					$table .= '<tr>
+      $table .= '<tr>
       <td style="width:40px;border:0.5px solid #000;text-align:left;font-family:\'Times New Roman\';color:rgb(0,0,0);letter-spacing:-0.2500pt;font-size:6.5000pt">'.$content['service_info']['name'].'</td>
       <td style="width:40px;border:0.5px solid #000;text-align:left;font-family:\'Times New Roman\';color:rgb(0,0,0);letter-spacing:-0.2500pt;font-size:6.5000pt">'.$content['id'].'</td>
       <td style="width:40px;border:0.5px solid #000;text-align:left;font-family:\'Times New Roman\';color:rgb(0,0,0);letter-spacing:-0.2500pt;font-size:6.5000pt">'.$content['service_info']['id'].'</td>

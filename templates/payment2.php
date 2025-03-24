@@ -1081,7 +1081,7 @@ if ($_COOKIE['notpayed'] != 1 && $_COOKIE['payed'] != 1) {
       <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ</a></td>
       <td><a href="/get-payment-bill/'.$year.'/'.$month.'/">Счет на оплату</a></td>';
       if ($add_report == 1) {
-      $content_list['body'] .= '<td><a class="dwn" data-href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE' : 'HARPER,OLTO').'/" href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE' : 'HARPER,OLTO').'/">К. отчет</a></td>';
+      $content_list['body'] .= '<td><a class="dwn" data-href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE,NESONS' : 'HARPER,OLTO').'/" href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE,NESONS' : 'HARPER,OLTO').'/">К. отчет</a></td>';
       }
       $content_list['body'] .= '<td>'.$summ.',00 руб.</td>';
 
