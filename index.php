@@ -4981,7 +4981,8 @@ $counter = 1;
       $diff = $date2->diff($date1)->format("%a");
       }
 
-      if (in_array($content['model']['brand'], explode(',',$_GET['brands']))) {
+      //if (in_array($content['model']['brand'], explode(',',$_GET['brands']))) {
+				if (true) {
         $date_current = new DateTime("01/" . $_GET['month'] . "/" . $_GET['year']);
         $date_returns    = new DateTime("01/05/2020");
         $checkReturnsFlag  = ($date_current < $date_returns) ? true : false;
