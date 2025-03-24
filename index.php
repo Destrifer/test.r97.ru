@@ -5110,7 +5110,7 @@ $totalSum = $content['total_price'] + $content['transport_cost'] + $content['par
 header("Content-Type: application/vnd.ms-word");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-header("content-disposition: attachment;filename=Report.doc");
+header("content-disposition: attachment;filename=Report1.doc");
 
 if (in_array('TESLER', explode(',',$_GET['brands'])) || $_GET['brands'] == 'tesler') {
 $brand = brand_by_id(4);
@@ -5428,7 +5428,7 @@ while ($row = mysqli_fetch_array($sql)) {
 header("Content-Type: application/vnd.ms-word");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-header("content-disposition: attachment;filename=Report.doc");
+header("content-disposition: attachment;filename=Report2.doc");
 
 if (in_array('TESLER', $brands)) {
 $brand = brand_by_id(4);
