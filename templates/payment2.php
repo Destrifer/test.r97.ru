@@ -230,7 +230,7 @@ while ($row = mysqli_fetch_array($sql)) {
       <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ</a></td>
       <td><a href="/get-payment-bill/'.$year.'/'.$month.'/">Счет на оплату</a></td>';
       if ($add_report == 1) {
-      $content_list['body'] .= '<td><a class="dwn" data-href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE' : 'HARPER,OLTO').'/" href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE' : 'HARPER,OLTO').'/">К. отчет</a></td>';
+      $content_list['body'] .= '<td><a class="dwn" data-href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE' : 'HARPER,OLTO').'/" href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/'.((date("Y-m-j", strtotime($year.'-'.$month.'-1')) >= date("Y-m-j", strtotime('2019-10-1'))) ? 'HARPER,OLTO,SKYLINE' : 'HARPER,OLTO').'/">К. отчет2</a></td>';
       }
       $content_list['body'] .= '<td>'.$summ.',00 руб.</td>';
       $content_list['body'] .= '<td><table style="    margin: 0 auto;" class="nohov min_width"><tr><td>
