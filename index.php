@@ -4994,7 +4994,12 @@ $counter = 1;
          } else {
           $ids[] = $row['id'];
           $totalSum = $content['total_price'] + $content['transport_cost'] + $content['parts_cost'] + $content['install_cost'] + $content['dismant_cost'];
-      $table .= '<tr>
+					$table .= '<tr>
+  <td colspan="25" style="border:0.5px solid #000; text-align:left; font-family:\'Times New Roman\'; font-size:7pt;">
+    <strong>Выбранные бренды:</strong> ' . htmlspecialchars(implode(', ', explode(',', $_GET['brands']))) . '
+  </td>
+</tr>';
+					$table .= '<tr>
       <td style="width:40px;border:0.5px solid #000;text-align:left;font-family:\'Times New Roman\';color:rgb(0,0,0);letter-spacing:-0.2500pt;font-size:6.5000pt">'.$content['service_info']['name'].'</td>
       <td style="width:40px;border:0.5px solid #000;text-align:left;font-family:\'Times New Roman\';color:rgb(0,0,0);letter-spacing:-0.2500pt;font-size:6.5000pt">'.$content['id'].'</td>
       <td style="width:40px;border:0.5px solid #000;text-align:left;font-family:\'Times New Roman\';color:rgb(0,0,0);letter-spacing:-0.2500pt;font-size:6.5000pt">'.$content['service_info']['id'].'</td>
@@ -5110,7 +5115,7 @@ $totalSum = $content['total_price'] + $content['transport_cost'] + $content['par
 header("Content-Type: application/vnd.ms-word");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-header("content-disposition: attachment;filename=Report1.doc");
+header("content-disposition: attachment;filename=Report.doc");
 
 if (in_array('TESLER', explode(',',$_GET['brands'])) || $_GET['brands'] == 'tesler') {
 $brand = brand_by_id(4);
@@ -5428,7 +5433,7 @@ while ($row = mysqli_fetch_array($sql)) {
 header("Content-Type: application/vnd.ms-word");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-header("content-disposition: attachment;filename=Report2.doc");
+header("content-disposition: attachment;filename=Report.doc");
 
 if (in_array('TESLER', $brands)) {
 $brand = brand_by_id(4);
