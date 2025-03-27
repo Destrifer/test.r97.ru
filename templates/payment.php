@@ -887,7 +887,8 @@ if ($_COOKIE['notpayed'] != 1 && $_COOKIE['payed'] != 1) {
 
 
 
-      $summ = $type2['sum'];
+      $summ = get_service_summ_fast($userID, $month, $year, 'HARPER', '', true);
+
       $content_list['total'] += $summ;
 
 
