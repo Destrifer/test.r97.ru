@@ -1959,7 +1959,7 @@ ul.tabs{
  <?=menu_dash();?>
   </div><!-- .adm-tab -->
            <br>
-           <h2>Платежные документы</h2>
+           <h2>Платежные документы4</h2>
            <br>
   <div class="adm-catalog">
 
