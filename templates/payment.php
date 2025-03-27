@@ -182,7 +182,7 @@ $date_from_sven    = new DateTime("01/04/2018");
       $content_list['body'] .= '<tr data-payment-id="'.$type2['id'].'" data-payment-brand="harper">
       <td >'.$year.'.'.$month.'<br><u>HARPER</u></td>
       <td><a href="/get-detail-report/?service-id='.$type2['service_id'].'&month='.$month.'&year='.$year.'&brand=harper">Отчет</a></td>
-      <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ</a></td>
+      <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ1</a></td>
       <td><a href="/get-payment-bill/'.$year.'/'.$month.'/">Счет на оплату</a></td>';
       if ($add_report == 1) {
       $content_list['body'] .= '<td><a class="dwn" data-href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/HARPER,OLTO/" href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/HARPER,OLTO/">Отчет</a></td>';
@@ -539,7 +539,7 @@ $date_from_sven    = new DateTime("01/04/2018");
       $content_list['body'] .= '<tr data-payment-id="'.$type2['id'].'" data-payment-brand="harper">
       <td >'.$year.'.'.$month.'<br><u>HARPER</u></td>
       <td><a href="/get-detail-report/?service-id='.$type2['service_id'].'&month='.$month.'&year='.$year.'&brand=harper">Отчет</a></td>
-      <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ</a></td>
+      <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ2</a></td>
       <td><a href="/get-payment-bill/'.$year.'/'.$month.'/">Счет на оплату</a></td>';
       if ($add_report == 1) {
       $content_list['body'] .= '<td><a class="dwn" data-href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/HARPER,OLTO/" href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/HARPER,OLTO/">Отчет</a></td>';
@@ -899,7 +899,7 @@ if ($_COOKIE['notpayed'] != 1 && $_COOKIE['payed'] != 1) {
       $content_list['body'] .= '<tr data-payment-id="'.$type2['id'].'" data-payment-brand="harper">
       <td >'.$year.'.'.$month.'<br><u>HARPER</u></td>
       <td><a href="/get-detail-report/?service-id='.$type2['service_id'].'&month='.$month.'&year='.$year.'&brand=harper">Отчет</a></td>
-      <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ</a></td>
+      <td><a href="/get-payment-act/'.$year.'/'.$month.'/">Акт выполненных работ4</a></td>
       <td><a href="/get-payment-bill/'.$year.'/'.$month.'/">Счет на оплату</a></td>';
       if ($add_report == 1) {
       $content_list['body'] .= '<td><a class="dwn" data-href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/HARPER,OLTO/" href="/get-agent/'.$year.'/'.$month.'/'.$counter.'/HARPER,OLTO/">Отчет</a></td>';
