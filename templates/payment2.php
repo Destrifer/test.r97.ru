@@ -1735,7 +1735,7 @@ $(document).ready(function() {
  <?=menu_dash();?>
   </div><!-- .adm-tab -->
            <br>
-           <h2 style="margin-bottom: 12px;"><?php if ($userID == 2) { echo 'Счета и Акты прямые'; } else { echo 'Платежные документы2'; } ?></h2>
+           <h2 style="margin-bottom: 12px;"><?php if ($userID == 2) { echo 'Счета и Акты прямые'; } else { echo 'Платежные документы'; } ?></h2>
            <?= '<p>' . $content['dates_interval'] . '</p>'; ?>
 
   <div class="adm-catalog">

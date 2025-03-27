@@ -1620,7 +1620,7 @@ ul.tabs{
  <?=menu_dash();?>
   </div><!-- .adm-tab -->
            <br>
-           <h2>Платежные документы2</h2>
+           <h2>Платежные документы</h2>
            <br>
   <div class="adm-catalog">
     <div class="dates_block" style="vertical-align:middle;display:inline-block;height: 92px;padding-right:10px;">

@@ -2063,7 +2063,7 @@ width: 145px;
 <div class="wrapper">
 
            <br>
-           <h2>Платежные документы 7<?=$_GET['brand'];?>  <?=$_GET['combined_id'];?><?=($_GET['brand'] == 'TESLER' ? '-T' : '');?> - <?=$check_bill = mysqli_fetch_array(mysqli_query($db, 'SELECT `date` FROM `combine` where `id` = '.$_GET['combined_id'].';'))['date'];?> - <?=get_sum_combined($_GET['combined_id'], $_GET{'brand'});?>р.</h2>
+           <h2>Платежные документы  <?=$_GET['brand'];?>  <?=$_GET['combined_id'];?><?=($_GET['brand'] == 'TESLER' ? '-T' : '');?> - <?=$check_bill = mysqli_fetch_array(mysqli_query($db, 'SELECT `date` FROM `combine` where `id` = '.$_GET['combined_id'].';'))['date'];?> - <?=get_sum_combined($_GET['combined_id'], $_GET{'brand'});?>р.</h2>
            <br>
   <div class="adm-catalog">
 
