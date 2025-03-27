@@ -1270,7 +1270,7 @@ $content = content_list();
 <html>
 <head>
 <meta charset=utf-8>
-<title><?php if ($userID == 2) { echo 'Счета и Акты прямые'; } else { echo 'Платежные документы'; } ?></title>
+<title><?php if ($userID == 2) { echo 'Счета и Акты прямые'; } else { echo 'Платежные документы8'; } ?></title>
 <link href="/css/fonts.css" rel="stylesheet" />
 <link href="/css/style.css" rel="stylesheet" />
 <script src="/_new-codebase/front/vendor/jquery/jquery-1.7.2.min.js"></script>
@@ -1376,7 +1376,7 @@ $(document).ready(function() {
  <?=menu_dash();?>
   </div><!-- .adm-tab -->
            <br>
-           <h2><?php if ($userID == 2) { echo 'Счета и Акты прямые'; } else { echo 'Платежные документы'; } ?></h2>
+           <h2><?php if ($userID == 2) { echo 'Счета и Акты прямые'; } else { echo 'Платежные документы9'; } ?></h2>
            <br>
   <div class="adm-catalog">
          <div style="vertical-align:middle;">
