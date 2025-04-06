@@ -10,7 +10,7 @@ function getRepairsWithServices($db) {
     $sql = mysqli_query($db, "SELECT r.id, r.service_id, s.name AS service_name 
                               FROM repairs r 
                               LEFT JOIN requests s ON r.service_id = s.id 
-                              ORDER BY r.id DESC LIMIT 100");
+                              ORDER BY r.id DESC");
 
     if (!$sql) {
         echo '<p style="color:red">Ошибка запроса: ' . mysqli_error($db) . '</p>';
