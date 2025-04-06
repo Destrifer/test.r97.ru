@@ -25,21 +25,21 @@ if (mysqli_num_rows($sql) != false) {
 <head>
 <meta charset=utf-8>
 <title>Панель управления</title>
-<link href="<?=$config['url'];?>css/fonts.css" rel="stylesheet" />
-<link href="<?=$config['url'];?>css/style.css" rel="stylesheet" />
+<link href="/css/fonts.css" rel="stylesheet" />
+<link href="/css/style.css" rel="stylesheet" />
 <script src="/_new-codebase/front/vendor/jquery/jquery-1.7.2.min.js"  ></script>
-<script src="<?=$config['url'];?>js/jquery-ui.min.js"></script>
-<script src="<?=$config['url'];?>js/jquery.placeholder.min.js"></script>
-<script src="<?=$config['url'];?>js/jquery.formstyler.min.js"></script>
-<script src="<?=$config['url'];?>js/main.js"></script>
-<script src="<?=$config['url'];?>notifier/js/index.js"></script>
-<link rel="stylesheet" type="text/css" href="<?=$config['url'];?>notifier/css/style.css">
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/jquery.placeholder.min.js"></script>
+<script src="/js/jquery.formstyler.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/notifier/js/index.js"></script>
+<link rel="stylesheet" type="text/css" href="/notifier/css/style.css">
 <link rel="stylesheet" href="/_new-codebase/front/vendor/animate.min.css" />
 <script src='/_new-codebase/front/vendor/mustache/mustache.min.js'></script>
 <script src="/_new-codebase/front/vendor/malihu/jquery.mCustomScrollbar.concat.min.js"></script>
 <link rel="stylesheet" href="/_new-codebase/front/vendor/malihu/jquery.mCustomScrollbar.min.css" />
 <script  src="/_new-codebase/front/vendor/datatables/1.10.12/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?=$config['url'];?>css/datatables.css">
+<link rel="stylesheet" type="text/css" href="/css/datatables.css">
 
 <script >
 // Таблица
@@ -76,7 +76,7 @@ $(document).ready(function() {
   <div class="wrapper">
 
     <div class="logo">
-      <a href="/dashboard/"><img src="<?=$config['url'];?>i/logo.png" alt=""/></a>
+      <a href="/dashboard/"><img src="/i/logo.png" alt=""/></a>
       <span>Сервис</span>
     </div>
 
