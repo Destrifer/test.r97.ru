@@ -82,7 +82,7 @@ $services = getAllServices($db);
       <?php foreach ($repairs as $repair): ?>
         <tr>
           <td><?= $repair['id'] ?></td>
-          <td><?= htmlspecialchars($repair['service_name']) ?></td>
+          <td><?= $repair['service_name'] ? htmlspecialchars($repair['service_name']) : '<span style="color:red;">Сервис не найден</span>' ?></td>
           <td>
             <form method="POST" onsubmit="return confirm('Сменить сервис?');" style="display: flex; gap: 4px;">
               <input type="hidden" name="repair_id" value="<?= $repair['id'] ?>">
