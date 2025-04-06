@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('Content-Type: application/json');
 
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/configuration.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
 
 $start = intval($_GET['start'] ?? 0);
