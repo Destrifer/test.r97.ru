@@ -7,9 +7,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
 
 function getRepairsWithServices($db) {
     $repairs = [];
-    $sql = mysqli_query($db, "SELECT r.id, r.service_id, s.name AS service_name 
+    $sql = mysqli_query($db, "SELECT r.id, r.service_id, s.name AS service_name, s.user_id AS request_user_id
                               FROM repairs r 
-                              LEFT JOIN requests s ON r.service_id = s.id 
+                              LEFT JOIN requests s ON r.service_id = s.user_id 
                               ORDER BY r.id DESC");
 
     if (!$sql) {
@@ -25,7 +25,7 @@ function getRepairsWithServices($db) {
 
 function getAllServices($db) {
     $services = [];
-    $sql = mysqli_query($db, "SELECT id, name FROM requests ORDER BY name");
+    $sql = mysqli_query($db, "SELECT user_id, name FROM requests ORDER BY name");
     while ($row = mysqli_fetch_assoc($sql)) {
         $services[] = $row;
     }
@@ -88,7 +88,7 @@ $services = getAllServices($db);
               <input type="hidden" name="repair_id" value="<?= $repair['id'] ?>">
               <select name="new_service_id">
                 <?php foreach ($services as $service): ?>
-                  <option value="<?= $service['id'] ?>" <?= $service['id'] == $repair['service_id'] ? 'selected' : '' ?>>
+                  <option value="<?= $service['user_id'] ?>" <?= $service['user_id'] == $repair['service_id'] ? 'selected' : '' ?>>
                     <?= htmlspecialchars($service['name']) ?>
                   </option>
                 <?php endforeach; ?>
