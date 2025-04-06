@@ -1,16 +1,13 @@
 
 <?php
-// Включаем вывод ошибок
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключение к БД
 require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
 
-// Получаем ремонты и сервисы
 function getRepairsWithServices($db) {
     $repairs = [];
-    $sql = mysqli_query($db, "SELECT r.id, r.title, r.service_id, s.name AS service_name 
+    $sql = mysqli_query($db, "SELECT r.id, r.service_id, s.name AS service_name 
                               FROM repairs r 
                               LEFT JOIN requests s ON r.service_id = s.id 
                               ORDER BY r.id DESC LIMIT 100");
@@ -76,18 +73,15 @@ $services = getAllServices($db);
     <table id="repairs_table" class="display" width="100%">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Название</th>
+          <th>ID ремонта</th>
           <th>Текущий сервис</th>
           <th>Новый сервис</th>
-          <th>Действие</th>
         </tr>
       </thead>
       <tbody>
       <?php foreach ($repairs as $repair): ?>
         <tr>
           <td><?= $repair['id'] ?></td>
-          <td><?= htmlspecialchars($repair['title']) ?></td>
           <td><?= htmlspecialchars($repair['service_name']) ?></td>
           <td>
             <form method="POST" onsubmit="return confirm('Сменить сервис?');" style="display: flex; gap: 4px;">
@@ -102,7 +96,6 @@ $services = getAllServices($db);
               <button type="submit">OK</button>
             </form>
           </td>
-          <td></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
