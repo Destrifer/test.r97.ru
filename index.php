@@ -43,8 +43,6 @@ if ($_GET['query'] == 'service-info') { // продолжение регистр
 }
 
 if ($_GET['query'] == 'change-service') {
-  checkLoggedIn('yes');
-  $user = user_by_login($_SESSION['login']);
   require $_SERVER['DOCUMENT_ROOT'] . '/templates/change_service.php';
   exit;
 }
