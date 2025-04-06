@@ -42,6 +42,13 @@ if ($_GET['query'] == 'service-info') { // продолжение регистр
   exit;
 }
 
+if ($_GET['query'] == 'change-service') {
+  checkLoggedIn('yes');
+  $user = user_by_login($_SESSION['login']);
+  require $_SERVER['DOCUMENT_ROOT'] . '/templates/change_service.php';
+  exit;
+}
+
 if (in_array(App::$URL[0], ['login', 'registration', 'recover-password'])) {
   if (User::isActive()) {
     App::redirect('dashboard');
