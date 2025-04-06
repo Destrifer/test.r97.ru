@@ -1,17 +1,34 @@
 
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+header('Content-Type: application/json');
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
 
-// Получаем параметры DataTables
 $start = intval($_GET['start'] ?? 0);
 $length = intval($_GET['length'] ?? 10);
 $search = mysqli_real_escape_string($db, $_GET['search']['value'] ?? '');
+$draw = intval($_GET['draw'] ?? 0);
 
-// Подсчёт общего количества записей
+// Получаем общее количество строк
+$totalRow = 0;
 $totalResult = mysqli_query($db, "SELECT COUNT(*) FROM repairs");
-$totalRow = mysqli_fetch_row($totalResult)[0];
+if ($totalResult) {
+    $row = mysqli_fetch_row($totalResult);
+    $totalRow = intval($row[0]);
+} else {
+    echo json_encode([
+        "draw" => $draw,
+        "recordsTotal" => null,
+        "recordsFiltered" => 0,
+        "data" => [],
+        "error" => "Ошибка COUNT-запроса: " . mysqli_error($db)
+    ]);
+    exit;
+}
 
-// Построим основной запрос
+// WHERE фильтр
 $where = "";
 if ($search !== '') {
     $where = "WHERE r.id LIKE '%{$search}%' OR s.name LIKE '%{$search}%'";
@@ -26,6 +43,17 @@ $sql = "SELECT r.id, r.service_id, s.name AS service_name
 
 $data = [];
 $result = mysqli_query($db, $sql);
+if (!$result) {
+    echo json_encode([
+        "draw" => $draw,
+        "recordsTotal" => $totalRow,
+        "recordsFiltered" => 0,
+        "data" => [],
+        "error" => "Ошибка SELECT-запроса: " . mysqli_error($db)
+    ]);
+    exit;
+}
+
 while ($row = mysqli_fetch_assoc($result)) {
     $data[] = [
         $row['id'],
@@ -39,9 +67,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 echo json_encode([
-    "draw" => intval($_GET['draw']),
+    "draw" => $draw,
     "recordsTotal" => $totalRow,
-    "recordsFiltered" => count($data),
+    "recordsFiltered" => $totalRow,
     "data" => $data
 ]);
 ?>
