@@ -1,6 +1,12 @@
 
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/includes/configuration.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/includes/functions.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/includes/auth.php');
 require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/_new-codebase/front/templates/main/parts/dashboard.php';
+require '_new-codebase/front/templates/main/parts/dashboard/controls.php';
 
 
 function getRepairsWithServices($db) {
