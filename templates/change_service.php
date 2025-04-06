@@ -1,14 +1,24 @@
 
 <?php
+// Включаем вывод ошибок
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Подключение к БД
 require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
 
-
+// Получаем ремонты и сервисы
 function getRepairsWithServices($db) {
     $repairs = [];
     $sql = mysqli_query($db, "SELECT r.id, r.title, r.service_id, s.name AS service_name 
                               FROM repairs r 
                               LEFT JOIN requests s ON r.service_id = s.id 
                               ORDER BY r.id DESC LIMIT 100");
+
+    if (!$sql) {
+        echo '<p style="color:red">Ошибка запроса: ' . mysqli_error($db) . '</p>';
+        return [];
+    }
 
     while ($row = mysqli_fetch_assoc($sql)) {
         $repairs[] = $row;
@@ -29,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['repair_id'], $_POST['
     $repairId = intval($_POST['repair_id']);
     $newServiceId = intval($_POST['new_service_id']);
     mysqli_query($db, "UPDATE repairs SET service_id = '{$newServiceId}' WHERE id = '{$repairId}'");
-    header("Location: /change_service.php?success=1");
+    header("Location: /change-service/?success=1");
     exit;
 }
 
@@ -41,14 +51,18 @@ $services = getAllServices($db);
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Смена сервиса у ремонта</title>
+  <title>Смена сервиса</title>
   <link href="/css/style.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/datatables.css">
   <script src="/_new-codebase/front/vendor/jquery/jquery-1.7.2.min.js"></script>
   <script src="/_new-codebase/front/vendor/datatables/1.10.12/jquery.dataTables.min.js"></script>
   <script>
   $(document).ready(function() {
-    $('#repairs_table').DataTable();
+    $('#repairs_table').DataTable({
+        "language": {
+            "emptyTable": "Нет данных для отображения"
+        }
+    });
   });
   </script>
 </head>
@@ -58,6 +72,7 @@ $services = getAllServices($db);
     <?php if (isset($_GET['success'])): ?>
       <div style="color: green; font-weight: bold;">Сервис успешно изменен</div>
     <?php endif; ?>
+
     <table id="repairs_table" class="display" width="100%">
       <thead>
         <tr>
@@ -75,7 +90,7 @@ $services = getAllServices($db);
           <td><?= htmlspecialchars($repair['title']) ?></td>
           <td><?= htmlspecialchars($repair['service_name']) ?></td>
           <td>
-            <form method="POST" onsubmit="return confirm('Вы уверены, что хотите сменить сервис?');" style="display: flex; gap: 4px;">
+            <form method="POST" onsubmit="return confirm('Сменить сервис?');" style="display: flex; gap: 4px;">
               <input type="hidden" name="repair_id" value="<?= $repair['id'] ?>">
               <select name="new_service_id">
                 <?php foreach ($services as $service): ?>
@@ -84,9 +99,10 @@ $services = getAllServices($db);
                   </option>
                 <?php endforeach; ?>
               </select>
-              <button type="submit">Сменить</button>
+              <button type="submit">OK</button>
             </form>
           </td>
+          <td></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
