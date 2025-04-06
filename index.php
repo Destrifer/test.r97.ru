@@ -42,8 +42,8 @@ if ($_GET['query'] == 'service-info') { // продолжение регистр
   exit;
 }
 
-if ($_GET['query'] == 'change-service') {
-  require $_SERVER['DOCUMENT_ROOT'] . '/templates/change_service.php';
+if ($_GET['query'] == 'change-service-server') {
+  require $_SERVER['DOCUMENT_ROOT'] . '/templates/change_service_server.php';
   exit;
 }
 
