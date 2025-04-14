@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 use program\core;
+use models\User;
 
 if (!empty(core\App::$URLParams['ajax'])) {
   switch (core\App::$URLParams['ajax']) {
