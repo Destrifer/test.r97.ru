@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 use program\core;
 
@@ -205,7 +207,9 @@ $(document).ready(function() {
  <?=menu_dash();?>
   </div><!-- .adm-tab -->
            <br>
-           <h2>Управление СЦ</h2>
+					 <?php if (\models\User::hasRole('admin')): ?>
+								<h2>Управление СЦ</h2>
+						<?php endif; ?>
            <br>
   <div class="adm-catalog">
 
