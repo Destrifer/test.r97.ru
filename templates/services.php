@@ -207,9 +207,8 @@ $(document).ready(function() {
  <?=menu_dash();?>
   </div><!-- .adm-tab -->
            <br>
-					 <?php if (\models\User::hasRole('admin')): ?>
 								<h2>Управление СЦ</h2>
-						<?php endif; ?>
+								<?php	echo \models\User::getUserRole();?>
            <br>
   <div class="adm-catalog">
 
