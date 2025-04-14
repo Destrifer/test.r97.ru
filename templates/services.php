@@ -208,8 +208,10 @@ $(document).ready(function() {
  <?=menu_dash();?>
   </div><!-- .adm-tab -->
            <br>
-								<h2>Управление СЦ</h2>
-								<pre><?php echo \models\User::getData('role'); ?></pre>
+								
+								<?php if (User::getData('role') !== 'admin') { ?>
+									<h2>Управление СЦ</h2>
+								<?php } ?>
 
            <br>
   <div class="adm-catalog">
