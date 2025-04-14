@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
 // Список всех сервисов для заполнения <select>
 function getAllServices($db) {
     $services = [];
-    $sql = mysqli_query($db, "SELECT user_id, name FROM requests ORDER BY name");
+    $sql = mysqli_query($db, "SELECT user_id, name FROM requests ORDER BY name LIMIT 10000");
     while ($row = mysqli_fetch_assoc($sql)) {
         $services[] = $row;
     }
