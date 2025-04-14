@@ -14,7 +14,7 @@ $draw = intval($_GET['draw'] ?? 0);
 
 // Получаем общее количество строк
 $totalRow = 0;
-$totalResult = mysqli_query($db, "SELECT COUNT(*) FROM repairs");
+$totalResult = mysqli_query($db, "SELECT COUNT(*) FROM (SELECT id FROM repairs ORDER BY id DESC LIMIT 10000) AS sub");
 if ($totalResult) {
     $row = mysqli_fetch_row($totalResult);
     $totalRow = intval($row[0]);
@@ -36,11 +36,14 @@ if ($search !== '') {
 }
 
 $sql = "SELECT r.id, r.service_id, s.name AS service_name 
-        FROM repairs r 
+        FROM (
+            SELECT * FROM repairs ORDER BY id DESC LIMIT 10000
+        ) r 
         LEFT JOIN requests s ON r.service_id = s.user_id 
         {$where}
         ORDER BY r.id DESC
         LIMIT {$start}, {$length}";
+
 
 $data = [];
 $result = mysqli_query($db, $sql);
