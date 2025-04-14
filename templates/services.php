@@ -209,7 +209,7 @@ $(document).ready(function() {
   </div><!-- .adm-tab -->
            <br>
 								<h2>Управление СЦ</h2>
-								<pre><?php print_r(\models\User::getData()); ?></pre>
+								<pre><?php echo 'Роль: ' . \models\User::getData()['role']; ?></pre>
 
            <br>
   <div class="adm-catalog">
