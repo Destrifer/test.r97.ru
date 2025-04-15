@@ -1,11 +1,16 @@
-
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes/configuration.php';
 
-// Список всех сервисов для заполнения <select>
+use models\User;
+
+// Проверка доступа по роли
+if (User::getData('role') !== 'admin') {
+    echo 'Доступ запрещён';
+    exit;
+}
+
+// Список всех сервисов для выпадающего списка
 function getAllServices($db) {
     $services = [];
     $sql = mysqli_query($db, "SELECT user_id, name FROM requests ORDER BY name");
@@ -15,6 +20,7 @@ function getAllServices($db) {
     return $services;
 }
 
+// Обработка замены сервиса
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['repair_id'], $_POST['new_service_id'])) {
     $repairId = intval($_POST['repair_id']);
     $newServiceId = intval($_POST['new_service_id']);
@@ -25,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['repair_id'], $_POST['
 
 $services = getAllServices($db);
 ?>
+
 <!doctype html>
 <html>
 <head>
