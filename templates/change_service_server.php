@@ -1,6 +1,7 @@
 
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/_new-codebase/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes/configuration.php';
 
 // Список всех сервисов для заполнения <select>
 function getAllServices($db) {
