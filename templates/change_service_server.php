@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['repair_id'], $_POST['
 
 $services = getAllServices($db);
 ?>
-
 <!doctype html>
 <html>
 <head>
@@ -72,11 +71,33 @@ $services = getAllServices($db);
   </script>
 </head>
 <body>
+<div class="viewport-wrapper">
+
+  <div class="site-header">
+    <div class="wrapper">
+      <div class="logo">
+        <a href="/dashboard/"><img src="/i/logo.png" alt=""/></a>
+        <span>Сервис</span>
+      </div>
+      <div class="logout">
+        <a href="/logout/">Выйти, <?=User::getData('login');?></a>
+      </div>
+    </div>
+  </div>
+
   <div class="wrapper">
+    <?=top_menu_admin();?>
+
+    <div class="adm-tab">
+      <?=menu_dash();?>
+    </div>
+
+    <br>
     <h2>Смена сервиса у ремонта (серверная)</h2>
     <?php if (isset($_GET['success'])): ?>
       <div style="color: green; font-weight: bold;">Сервис успешно изменен</div>
     <?php endif; ?>
+
     <table id="repairs_table" class="display" width="100%">
       <thead>
         <tr>
@@ -86,6 +107,8 @@ $services = getAllServices($db);
         </tr>
       </thead>
     </table>
-  </div>
+
+  </div> <!-- /.wrapper -->
+</div> <!-- /.viewport-wrapper -->
 </body>
 </html>
