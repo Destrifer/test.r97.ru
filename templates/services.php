@@ -221,6 +221,9 @@ $(document).ready(function() {
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/services/other/" class="button">Неактивные СЦ</a> 
       <a style="width: auto;padding-left: 7px;padding-right: 7px;background:#EB0000;color:#fff;" href="/services/refused/" class="button">Отклоненные СЦ</a> 
       <a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/services-settings/" class="button">Общие настройки</a> 
+			<?php if (User::getData('role') == 'admin') { ?>
+			<a style="width: auto;padding-left: 7px;padding-right: 7px;" href="/change-service-server/" class="button">Смена сервиса</a>
+			<?php } ?>
       <a style="width: auto;padding-left: 7px;padding-right: 7px;float: right;background:#006600;color:#fff;" href="/excel-services/<?php if ($_GET['get'] == 'refused') { echo 'refused/'; } else if ($_GET['get'] == 'other') { echo 'other/'; } ?>" class="button">Экспорт в xls</a>
     </div>  <br>
 
