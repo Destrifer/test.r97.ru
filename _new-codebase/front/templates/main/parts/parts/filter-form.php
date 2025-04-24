@@ -132,7 +132,7 @@ function filterFormHTML($isArrivals, array $data, array $cats, array $codes, arr
                 <div class="col-2">
                     <div class="form__field" id="depot-filter">
                         <select class="form__select fselect-depot" name="depot_id" data-filter>
-                            <option value="all">-- любой склад --</option>
+                            <option value="all">-- любой 1склад --</option>
                             <?php foreach ($depots as $country => $depotsList) : ?>
                                 <optgroup label="<?= $country; ?>">
                                     <?php
