@@ -132,13 +132,13 @@ function filterFormHTML($isArrivals, array $data, array $cats, array $codes, arr
                 <div class="col-2">
                     <div class="form__field" id="depot-filter">
                         <select class="form__select fselect-depot" name="depot_id" data-filter>
-                            <option value="all">-- любой 1склад --</option>
+                            <option value="all">-- любой склад --</option>
                             <?php foreach ($depots as $country => $depotsList) : ?>
                                 <optgroup label="<?= $country; ?>">
                                     <?php
                                     $cur = (!empty($data['depot_id'])) ? $data['depot_id'] : null;
                                     foreach ($depotsList as $depot) {
-                                        echo '<option value="' . $depot['id'] . '" ' . (($depot['id'] === $cur) ? 'selected' : '') . '>' . $depot['name'] . '</option>';
+																			echo '<option value="' . $depot['id'] . '" ' . (($depot['id'] === $cur) ? 'selected' : '') . '>' . $depot['name'] . ' (' . $country . ')</option>';
                                     }
                                     ?>
                                 </optgroup>
