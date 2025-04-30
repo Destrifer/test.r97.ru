@@ -818,26 +818,31 @@ class Parts extends _Model
 
 
     private static function getSearchWhere($search)
-    {
-        $p = explode(',', trim($search));
-        if (count($p) > 1) {
-            array_pop($p); // удалить название производителя из названия запчасти
-        }
-        $search = implode(',', $p);
-        $res = 'p.`name` LIKE "%' . $search . '%"';
-        $id = filter_var($search, FILTER_SANITIZE_NUMBER_INT);
-        $code = preg_replace('/[\d]/', '', $search);
-        $groupSubQuery = '';
-        if ($code) {
-            $groupSubQuery = ' AND p.`group_id` IN (SELECT `id` FROM `' . self::TABLE_GROUP . '` WHERE `code` LIKE "%' . $code . '%")';
-        }
-        $idSubQuery = '';
-        if ($id) {
-            $idSubQuery = ' OR (p.`id` LIKE "' . $id . '%")';
-        }
-        $res .= ' OR p.`part_num` LIKE "%' . $search . '%" ' . $idSubQuery . $groupSubQuery;
-        return '(' . $res . ')';
-    }
+	{
+			$p = explode(',', trim($search));
+			if (count($p) > 1) {
+					array_pop($p); // удалить название производителя из названия запчасти
+			}
+			$search = implode(',', $p);
+			$res = 'p.`name` LIKE "%' . $search . '%"';
+			$id = filter_var($search, FILTER_SANITIZE_NUMBER_INT);
+			$code = preg_replace('/[\d]/', '', $search);
+			$groupSubQuery = '';
+			if ($code) {
+					$groupSubQuery = ' OR p.`group_id` IN (SELECT `id` FROM `' . self::TABLE_GROUP . '` WHERE `code` LIKE "%' . $code . '%")';
+			}
+			$idSubQuery = '';
+			if ($id) {
+					$idSubQuery = ' OR (p.`id` LIKE "' . $id . '%")';
+			}
+
+			// 🔍 добавляем сюда поиск по полю "place"
+			$placeSearch = ' OR b.`place` LIKE "%' . $search . '%"';
+
+			$res .= ' OR p.`part_num` LIKE "%' . $search . '%" ' . $idSubQuery . $groupSubQuery . $placeSearch;
+			return '(' . $res . ')';
+	}
+
 
 
     private static function limit(array $filter)
