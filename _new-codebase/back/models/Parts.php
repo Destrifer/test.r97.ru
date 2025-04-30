@@ -818,30 +818,34 @@ class Parts extends _Model
 
 
     private static function getSearchWhere($search)
-	{
-			$p = explode(',', trim($search));
-			if (count($p) > 1) {
-					array_pop($p); // удалить название производителя из названия запчасти
-			}
-			$search = implode(',', $p);
-			$res = 'p.`name` LIKE "%' . $search . '%"';
-			$id = filter_var($search, FILTER_SANITIZE_NUMBER_INT);
-			$code = preg_replace('/[\d]/', '', $search);
-			$groupSubQuery = '';
-			if ($code) {
-					$groupSubQuery = ' OR p.`group_id` IN (SELECT `id` FROM `' . self::TABLE_GROUP . '` WHERE `code` LIKE "%' . $code . '%")';
-			}
-			$idSubQuery = '';
-			if ($id) {
-					$idSubQuery = ' OR (p.`id` LIKE "' . $id . '%")';
-			}
+{
+    $search = trim($search);
+    if (!$search) return '';
 
-			// 🔍 добавляем сюда поиск по полю "place"
-			$placeSearch = ' OR b.`place` LIKE "%' . $search . '%"';
+    $conditions = [];
 
-			$res .= ' OR p.`part_num` LIKE "%' . $search . '%" ' . $idSubQuery . $groupSubQuery . $placeSearch;
-			return '(' . $res . ')';
-	}
+    // Поиск по названию, номеру, месту
+    $conditions[] = 'p.`name` LIKE "%' . $search . '%"';
+    $conditions[] = 'p.`part_num` LIKE "%' . $search . '%"';
+    $conditions[] = 'b.`place` LIKE "%' . $search . '%"';
+
+    // Точный поиск по коду вида FB27304
+    if (preg_match('/^([A-ZА-Я]+)(\d{2,})$/iu', $search, $matches)) {
+        $code = strtoupper($matches[1]);
+        $id = (int)$matches[2];
+
+        $conditions[] = '(p.`id` = ' . $id . ' AND p.`group_id` IN (
+            SELECT `id` FROM `' . self::TABLE_GROUP . '` WHERE `code` = "' . $code . '"
+        ))';
+    }
+
+    // Поиск по числовому ID, если ввели просто число
+    if (ctype_digit($search)) {
+        $conditions[] = 'p.`id` = ' . (int)$search;
+    }
+
+    return '(' . implode(' OR ', $conditions) . ')';
+}
 
 
 
